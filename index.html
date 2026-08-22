@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>privacidad / me — Hub de privacidad</title>
-  <meta name="description" content="Nodo central del ecosistema de privacidad: identidad, herramientas, noticias y academia. Sin rastreo.">
+  <title>privacidad / me — Hub</title>
+  <meta name="description" content="Nodo central del ecosistema de privacidad: identidad, herramientas, noticias y academia.">
   <meta name="theme-color" content="#05070a">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -17,7 +17,8 @@
             neon: '#0a84ff',
             'neon-glow': '#3b9eff',
             steel: '#8b9bb4',
-            mist: '#c5d0e0'
+            mist: '#c5d0e0',
+            dim: '#4a5568'
           },
           fontFamily: {
             sans: ['Inter', 'system-ui', 'sans-serif'],
@@ -32,81 +33,113 @@
     body { background: #05070a; }
     .cyber-grid {
       background-image:
-        linear-gradient(rgba(10,132,255,.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(10,132,255,.04) 1px, transparent 1px);
-      background-size: 48px 48px;
+        linear-gradient(rgba(10,132,255,.05) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,132,255,.05) 1px, transparent 1px);
+      background-size: 40px 40px;
     }
     .scanlines {
       background: repeating-linear-gradient(
         0deg,
         transparent,
-        transparent 2px,
-        rgba(0,0,0,.12) 2px,
-        rgba(0,0,0,.12) 4px
+        transparent 1px,
+        rgba(0,0,0,.18) 1px,
+        rgba(0,0,0,.18) 3px
       );
       pointer-events: none;
     }
+    .vignette {
+      background: radial-gradient(ellipse at center, transparent 40%, rgba(0,0,0,.55) 100%);
+      pointer-events: none;
+    }
     .glow-blue {
-      box-shadow: 0 0 24px rgba(10,132,255,.22), 0 0 48px rgba(10,132,255,.08);
+      box-shadow: 0 0 24px rgba(10,132,255,.25), 0 0 60px rgba(10,132,255,.1);
     }
     .text-glow {
-      text-shadow: 0 0 18px rgba(10,132,255,.45);
+      text-shadow: 0 0 20px rgba(10,132,255,.55), 0 0 40px rgba(10,132,255,.2);
     }
     @keyframes glitch {
-      0%, 90%, 100% { transform: translate(0); text-shadow: 0 0 18px rgba(10,132,255,.45); }
-      92% { transform: translate(-2px, 1px); text-shadow: -2px 0 #0a84ff, 2px 0 #3b9eff; }
-      94% { transform: translate(2px, -1px); text-shadow: 2px 0 #0a84ff, -2px 0 #3b9eff; }
-      96% { transform: translate(-1px, 0); }
+      0%, 88%, 100% { transform: translate(0); text-shadow: 0 0 20px rgba(10,132,255,.55); }
+      90% { transform: translate(-3px, 1px); text-shadow: -3px 0 #0a84ff, 3px 0 #ff2a6d; }
+      92% { transform: translate(3px, -1px); text-shadow: 3px 0 #0a84ff, -3px 0 #3b9eff; }
+      94% { transform: translate(-2px, 0); }
+      96% { transform: translate(2px, 1px); text-shadow: 2px 0 #ff2a6d, -2px 0 #0a84ff; }
     }
     .glitch-title {
-      animation: glitch 6s infinite;
+      animation: glitch 5.5s infinite;
+    }
+    @keyframes pulse-border {
+      0%, 100% { border-color: rgba(10,132,255,.25); }
+      50% { border-color: rgba(10,132,255,.55); }
     }
     .module-card {
-      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background .2s ease;
     }
     .module-card:hover {
-      border-color: rgba(10,132,255,.45);
-      box-shadow: 0 0 28px rgba(10,132,255,.15);
-      transform: translateY(-3px);
+      border-color: rgba(10,132,255,.55);
+      box-shadow: 0 0 32px rgba(10,132,255,.2), inset 0 0 20px rgba(10,132,255,.04);
+      transform: translateY(-4px);
+      background: #0d1219;
     }
     .status-dot {
-      box-shadow: 0 0 8px rgba(10,132,255,.8);
+      box-shadow: 0 0 10px rgba(10,132,255,.9);
+    }
+    .terminal-line {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    .crt-flicker {
+      animation: flicker 8s infinite;
+    }
+    @keyframes flicker {
+      0%, 92%, 100% { opacity: 1; }
+      93% { opacity: .85; }
+      94% { opacity: 1; }
+      96% { opacity: .9; }
+    }
+    .noise {
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
     }
   </style>
 </head>
-<body class="font-sans text-mist antialiased selection:bg-neon/30 selection:text-white min-h-screen flex flex-col">
+<body class="font-sans text-mist antialiased selection:bg-neon/30 selection:text-white min-h-screen flex flex-col crt-flicker">
 
-  <!-- scanlines overlay -->
-  <div class="fixed inset-0 scanlines opacity-40 z-50 pointer-events-none"></div>
+  <!-- overlays -->
+  <div class="fixed inset-0 scanlines opacity-50 z-50 pointer-events-none"></div>
+  <div class="fixed inset-0 vignette z-40 pointer-events-none"></div>
+  <div class="fixed inset-0 noise z-30 pointer-events-none"></div>
 
   <!-- header -->
   <header class="relative z-10 border-b border-white/5 bg-void/90 backdrop-blur-xl">
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/35 flex items-center justify-center">
-          <svg class="w-4 h-4 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+        <!-- Nuevo icono DedSec-inspired: ojo digital / nodo -->
+        <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
+          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+            <circle cx="12" cy="12" r="3.2"/>
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+            <path d="M12 5v2M12 17v2M5 12H3M21 12h-2" stroke-width="1.2" opacity=".7"/>
           </svg>
         </div>
         <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
       </div>
-      <div class="flex items-center gap-2 text-xs font-mono text-steel">
+      <div class="flex items-center gap-3 text-xs font-mono text-steel">
+        <span class="hidden sm:inline text-dim">SYS.STATUS</span>
         <span class="w-1.5 h-1.5 rounded-full bg-neon status-dot animate-pulse"></span>
-        <span>NODO ACTIVO</span>
+        <span class="text-neon">NODO ACTIVO</span>
       </div>
     </div>
   </header>
 
   <main class="relative flex-1 flex flex-col">
-    <div class="absolute inset-0 cyber-grid opacity-50"></div>
+    <div class="absolute inset-0 cyber-grid opacity-60"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void"></div>
 
-    <section class="relative z-10 flex-1 flex flex-col justify-center py-16 sm:py-20">
+    <section class="relative z-10 flex-1 flex flex-col justify-center py-12 sm:py-16">
       <div class="max-w-5xl mx-auto px-5 w-full">
 
         <!-- hero -->
-        <div class="text-center mb-14 sm:mb-16">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/25 bg-neon/5 text-[11px] font-mono text-neon mb-6 tracking-wider">
+        <div class="text-center mb-12 sm:mb-14">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-[11px] font-mono text-neon mb-5 tracking-wider">
             <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
             ECOSISTEMA · SIN RASTREO · OPEN SOURCE
           </div>
@@ -114,15 +147,15 @@
             privacidad<span class="text-neon text-glow">/me</span>
           </h1>
           <p class="text-steel text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Nodo central. Identidad, herramientas, noticias y formación.
-            Un solo punto de entrada al ecosistema de privacidad.
+            Nodo central. Identidad, herramientas, noticias y formación.<br class="hidden sm:block">
+            Un solo punto de entrada al ecosistema.
           </p>
         </div>
 
         <!-- modules grid -->
-        <div class="grid sm:grid-cols-2 gap-4 sm:gap-5">
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-10">
 
-          <!-- privtr.ee -->
+          <!-- 01 privtr.ee -->
           <a href="https://starkprivacy.github.io/privacidad/" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -135,14 +168,14 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">01</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">privtr.ee</h2>
-            <p class="text-sm text-steel leading-relaxed mb-4">Identidad digital y enlaces sin rastreo. Tarjeta de contacto opcional. Open source.</p>
+            <p class="text-sm text-steel leading-relaxed mb-4">Identidad digital y enlaces. Tarjeta de contacto opcional (vCard).</p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
               ACCEDER
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
 
-          <!-- tools -->
+          <!-- 02 tools -->
           <a href="https://starkprivacy.github.io/privacidad-tools/" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -154,14 +187,14 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">02</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">privacidad / tools</h2>
-            <p class="text-sm text-steel leading-relaxed mb-4">Kit de privacidad en el navegador. Procesamiento local. Sin cuentas ni telemetría.</p>
+            <p class="text-sm text-steel leading-relaxed mb-4">Kit de utilidades en el navegador. Procesamiento 100 % local.</p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
               ACCEDER
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
 
-          <!-- news -->
+          <!-- 03 news -->
           <a href="https://starkprivacy.github.io/privacidad-news/" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -174,14 +207,14 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">03</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">privacidad / news</h2>
-            <p class="text-sm text-steel leading-relaxed mb-4">Medio independiente de noticias sobre privacidad, soberanía digital y seguridad.</p>
+            <p class="text-sm text-steel leading-relaxed mb-4">Noticias sobre privacidad, soberanía digital y seguridad.</p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
               ACCEDER
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </a>
 
-          <!-- academia -->
+          <!-- 04 academia -->
           <a href="https://boringprivacy.io" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -194,7 +227,7 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">04</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">boringprivacy.io</h2>
-            <p class="text-sm text-steel leading-relaxed mb-4">Academia. Formación práctica en privacidad, soberanía y libertad digital.</p>
+            <p class="text-sm text-steel leading-relaxed mb-4">Academia. Formación práctica en privacidad y soberanía digital.</p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
               ACCEDER
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
@@ -203,9 +236,71 @@
 
         </div>
 
-        <!-- footer note -->
-        <div class="mt-14 text-center">
-          <p class="text-xs font-mono text-steel/70 tracking-wide">
+        <!-- terminal / status panel -->
+        <div class="rounded-2xl bg-panel border border-white/10 p-5 sm:p-6 mb-10 overflow-hidden">
+          <div class="flex items-center justify-between mb-4">
+            <div class="flex items-center gap-2">
+              <span class="w-2 h-2 rounded-full bg-neon status-dot"></span>
+              <span class="text-xs font-mono text-neon tracking-wider">TERMINAL // STATUS</span>
+            </div>
+            <span class="text-[10px] font-mono text-dim">v0.1 · live</span>
+          </div>
+          <div class="space-y-1.5 text-[12px] sm:text-[13px] terminal-line text-steel/90">
+            <p><span class="text-neon/80">></span> ecosystem.status .......... <span class="text-neon">ONLINE</span></p>
+            <p><span class="text-neon/80">></span> nodes.active .............. <span class="text-white">04</span></p>
+            <p><span class="text-neon/80">></span> tracking.cookies .......... <span class="text-white">NONE</span></p>
+            <p><span class="text-neon/80">></span> data.sales ................. <span class="text-white">DISABLED</span></p>
+            <p><span class="text-neon/80">></span> last.sync .................. <span class="text-white">2026-08-22T00:26Z</span></p>
+            <p class="pt-1"><span class="text-neon/80">></span> <span class="text-dim">_</span></p>
+          </div>
+        </div>
+
+        <!-- secondary links / canales -->
+        <div class="mb-10">
+          <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4 text-center sm:text-left">CANALES · ENLACES RÁPIDOS</h3>
+          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+            <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener"
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">X / Twitter</span>
+            </a>
+            <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener"
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">Telegram</span>
+            </a>
+            <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener"
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">YouTube</span>
+            </a>
+            <a href="https://github.com/StarkPrivacy" target="_blank" rel="noopener"
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">GitHub</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- principios rápidos -->
+        <div class="grid sm:grid-cols-3 gap-4 mb-12">
+          <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
+            <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">01 · LOCAL</div>
+            <p class="text-sm text-steel leading-relaxed">Las herramientas se ejecutan en tu dispositivo. Nada se sube a servidores externos.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
+            <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">02 · AUDITABLE</div>
+            <p class="text-sm text-steel leading-relaxed">Código abierto. Puedes revisar, modificar y desplegar por tu cuenta.</p>
+          </div>
+          <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
+            <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">03 · SIN PRODUCTO</div>
+            <p class="text-sm text-steel leading-relaxed">Tú no eres el producto. No hay venta de datos ni grafo social.</p>
+          </div>
+        </div>
+
+        <!-- slogan -->
+        <div class="text-center">
+          <p class="text-xs font-mono text-steel/60 tracking-wide">
             SIN PRIVACIDAD TU LIBERTAD ES SOLO UNA ILUSIÓN
           </p>
         </div>
@@ -215,7 +310,7 @@
 
   <footer class="relative z-10 border-t border-white/5 py-6">
     <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-steel">
-      <span class="font-mono">privacidad/me · hub</span>
+      <span class="font-mono">privacidad/me · hub · cooking</span>
       <div class="flex items-center gap-4">
         <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">X</a>
         <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">Telegram</a>
