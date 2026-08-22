@@ -87,8 +87,24 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
     }
-    .copy-btn { cursor: pointer; }
-    .copy-btn:active { opacity: .7; }
+    /* Banner ticker */
+    .ticker-wrap {
+      overflow: hidden;
+      white-space: nowrap;
+      background: rgba(10,132,255,.04);
+      border-bottom: 1px solid rgba(10,132,255,.12);
+    }
+    .ticker {
+      display: inline-block;
+      padding-left: 100%;
+      animation: ticker 38s linear infinite;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+    @keyframes ticker {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-100%); }
+    }
+    .ticker:hover { animation-play-state: paused; }
   </style>
 </head>
 <body class="font-sans text-mist antialiased selection:bg-neon/30 selection:text-white min-h-screen flex flex-col crt-flicker">
@@ -119,6 +135,37 @@
     </div>
   </header>
 
+  <!-- Banner huella del visitante -->
+  <div class="relative z-10 ticker-wrap">
+    <div class="ticker text-[11px] text-steel/90 py-1.5" id="ticker-content">
+      <span class="text-neon/70">HUELLA · </span>
+      <span id="t-ip">IP: consultando…</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-os">SO: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-browser">Navegador: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-lang">Idioma: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-screen">Resolución: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-load">Carga: —</span>
+      <span class="mx-4 text-dim">//</span>
+      <span class="text-neon/70">HUELLA · </span>
+      <span id="t-ip2">IP: consultando…</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-os2">SO: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-browser2">Navegador: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-lang2">Idioma: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-screen2">Resolución: —</span>
+      <span class="mx-3 text-dim">|</span>
+      <span id="t-load2">Carga: —</span>
+    </div>
+  </div>
+
   <main class="relative flex-1 flex flex-col">
     <div class="absolute inset-0 cyber-grid opacity-60"></div>
     <div class="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void"></div>
@@ -145,7 +192,7 @@
         <div class="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-10">
 
           <a href="https://starkprivacy.github.io/privacidad/" target="_blank" rel="noopener"
-             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10 hover-sound">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
                 <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -164,7 +211,7 @@
           </a>
 
           <a href="https://starkprivacy.github.io/privacidad-tools/" target="_blank" rel="noopener"
-             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10 hover-sound">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
                 <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -182,7 +229,7 @@
           </a>
 
           <a href="https://starkprivacy.github.io/privacidad-news/" target="_blank" rel="noopener"
-             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10 hover-sound">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
                 <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -201,7 +248,7 @@
           </a>
 
           <a href="https://boringprivacy.io" target="_blank" rel="noopener"
-             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10 hover-sound">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
                 <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -236,15 +283,8 @@
             <p><span class="text-neon/80">></span> cookies.rastreo ............ <span class="text-white">NINGUNA</span></p>
             <p><span class="text-neon/80">></span> venta.datos ................ <span class="text-white">DESACTIVADA</span></p>
             <p><span class="text-neon/80">></span> última.carga ............... <span class="text-white" id="last-load">—</span></p>
-            <p class="pt-2 border-t border-white/5 mt-2"><span class="text-neon/80">></span> <span class="text-dim">// huella del visitante (solo local)</span></p>
-            <p><span class="text-neon/80">></span> dirección.ip ............... <span class="text-white" id="client-ip">consultando…</span></p>
-            <p><span class="text-neon/80">></span> sistema.operativo .......... <span class="text-white" id="client-os">—</span></p>
-            <p><span class="text-neon/80">></span> navegador .................. <span class="text-white" id="client-browser">—</span></p>
-            <p><span class="text-neon/80">></span> idioma ..................... <span class="text-white" id="client-lang">—</span></p>
-            <p><span class="text-neon/80">></span> resolución ................. <span class="text-white" id="client-screen">—</span></p>
             <p class="pt-1"><span class="text-neon/80">></span> <span class="text-dim">_</span></p>
           </div>
-          <p class="mt-4 text-[10px] text-dim leading-relaxed">La IP se consulta de forma puntual a un servicio externo solo para mostrarla aquí. No se almacena ni se envía a ningún servidor propio.</p>
         </div>
 
         <!-- canales -->
@@ -252,22 +292,22 @@
           <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4 text-center sm:text-left">CANALES · ENLACES RÁPIDOS</h3>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
             <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
               <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               <span class="text-[11px] font-mono text-steel group-hover:text-white transition">X / Twitter</span>
             </a>
             <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
               <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
               <span class="text-[11px] font-mono text-steel group-hover:text-white transition">Telegram</span>
             </a>
             <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
               <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               <span class="text-[11px] font-mono text-steel group-hover:text-white transition">YouTube</span>
             </a>
             <a href="https://github.com/StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group">
+               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
               <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
               <span class="text-[11px] font-mono text-steel group-hover:text-white transition">GitHub</span>
             </a>
@@ -335,22 +375,20 @@
     <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-steel">
       <span class="font-mono">privacidad/me · hub · V3</span>
       <div class="flex items-center gap-4">
-        <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">X</a>
-        <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">Telegram</a>
-        <a href="https://github.com/StarkPrivacy/privacidad_me" target="_blank" rel="noopener" class="hover:text-neon transition">GitHub</a>
+        <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">X</a>
+        <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">Telegram</a>
+        <a href="https://github.com/StarkPrivacy/privacidad_me" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">GitHub</a>
       </div>
     </div>
   </footer>
 
   <script>
     (function () {
-      // Fecha y hora de carga (formato español)
+      // ——— Datos del visitante ———
       const now = new Date();
       const opts = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
       const formatted = now.toLocaleString('es-ES', opts).replace(',', '');
-      document.getElementById('last-load').textContent = formatted;
 
-      // Sistema operativo y navegador (heurística ligera)
       const ua = navigator.userAgent;
       let os = 'Desconocido';
       if (/Windows NT 10/.test(ua)) os = 'Windows 10/11';
@@ -360,7 +398,6 @@
       else if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
       else if (/Linux/.test(ua)) os = 'Linux';
       else if (/CrOS/.test(ua)) os = 'Chrome OS';
-      document.getElementById('client-os').textContent = os;
 
       let browser = 'Desconocido';
       if (/Edg\//.test(ua)) browser = 'Microsoft Edge';
@@ -368,16 +405,54 @@
       else if (/Firefox\//.test(ua)) browser = 'Firefox';
       else if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) browser = 'Safari';
       else if (/OPR\//.test(ua)) browser = 'Opera';
-      document.getElementById('client-browser').textContent = browser;
 
-      document.getElementById('client-lang').textContent = navigator.language || navigator.userLanguage || '—';
-      document.getElementById('client-screen').textContent = window.screen.width + '×' + window.screen.height;
+      const lang = navigator.language || navigator.userLanguage || '—';
+      const screenRes = window.screen.width + '×' + window.screen.height;
 
-      // IP pública (consulta puntual, no se almacena)
+      // Rellenar terminal
+      document.getElementById('last-load').textContent = formatted;
+
+      // Rellenar banner (duplicado para scroll continuo)
+      function fillBanner(ip) {
+        const ipText = ip || 'no disponible';
+        ['', '2'].forEach(suf => {
+          document.getElementById('t-ip' + suf).textContent = 'IP: ' + ipText;
+          document.getElementById('t-os' + suf).textContent = 'SO: ' + os;
+          document.getElementById('t-browser' + suf).textContent = 'Navegador: ' + browser;
+          document.getElementById('t-lang' + suf).textContent = 'Idioma: ' + lang;
+          document.getElementById('t-screen' + suf).textContent = 'Resolución: ' + screenRes;
+          document.getElementById('t-load' + suf).textContent = 'Carga: ' + formatted;
+        });
+      }
+      fillBanner(null);
+
       fetch('https://api.ipify.org?format=json')
         .then(r => r.json())
-        .then(d => { document.getElementById('client-ip').textContent = d.ip || 'no disponible'; })
-        .catch(() => { document.getElementById('client-ip').textContent = 'no disponible'; });
+        .then(d => fillBanner(d.ip))
+        .catch(() => fillBanner(null));
+
+      // ——— Sonido hover retro ———
+      let audioCtx;
+      function playHoverSound() {
+        try {
+          if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(880, audioCtx.currentTime);
+          osc.frequency.exponentialRampToValueAtTime(440, audioCtx.currentTime + 0.04);
+          gain.gain.setValueAtTime(0.04, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.06);
+          osc.start(audioCtx.currentTime);
+          osc.stop(audioCtx.currentTime + 0.07);
+        } catch (e) {}
+      }
+
+      document.querySelectorAll('a, .hover-sound').forEach(el => {
+        el.addEventListener('mouseenter', playHoverSound);
+      });
     })();
   </script>
 
