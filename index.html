@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>privacidad / me — Hub de privacidad</title>
+  <meta name="description" content="Nodo central del ecosistema de privacidad: identidad, herramientas, noticias y academia. Sin rastreo.">
+  <meta name="theme-color" content="#05070a">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            void: '#05070a',
+            panel: '#0b0f14',
+            neon: '#0a84ff',
+            'neon-glow': '#3b9eff',
+            steel: '#8b9bb4',
+            mist: '#c5d0e0'
+          },
+          fontFamily: {
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+            mono: ['ui-monospace', 'SFMono-Regular', 'Menlo', 'Consolas', 'monospace']
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    body { background: #05070a; }
+    .cyber-grid {
+      background-image:
+        linear-gradient(rgba(10,132,255,.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(10,132,255,.04) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .scanlines {
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,.12) 2px,
+        rgba(0,0,0,.12) 4px
+      );
+      pointer-events: none;
+    }
+    .glow-blue {
+      box-shadow: 0 0 24px rgba(10,132,255,.22), 0 0 48px rgba(10,132,255,.08);
+    }
+    .text-glow {
+      text-shadow: 0 0 18px rgba(10,132,255,.45);
+    }
+    @keyframes glitch {
+      0%, 90%, 100% { transform: translate(0); text-shadow: 0 0 18px rgba(10,132,255,.45); }
+      92% { transform: translate(-2px, 1px); text-shadow: -2px 0 #0a84ff, 2px 0 #3b9eff; }
+      94% { transform: translate(2px, -1px); text-shadow: 2px 0 #0a84ff, -2px 0 #3b9eff; }
+      96% { transform: translate(-1px, 0); }
+    }
+    .glitch-title {
+      animation: glitch 6s infinite;
+    }
+    .module-card {
+      transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
+    }
+    .module-card:hover {
+      border-color: rgba(10,132,255,.45);
+      box-shadow: 0 0 28px rgba(10,132,255,.15);
+      transform: translateY(-3px);
+    }
+    .status-dot {
+      box-shadow: 0 0 8px rgba(10,132,255,.8);
+    }
+  </style>
+</head>
+<body class="font-sans text-mist antialiased selection:bg-neon/30 selection:text-white min-h-screen flex flex-col">
+
+  <!-- scanlines overlay -->
+  <div class="fixed inset-0 scanlines opacity-40 z-50 pointer-events-none"></div>
+
+  <!-- header -->
+  <header class="relative z-10 border-b border-white/5 bg-void/90 backdrop-blur-xl">
+    <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/35 flex items-center justify-center">
+          <svg class="w-4 h-4 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+          </svg>
+        </div>
+        <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
+      </div>
+      <div class="flex items-center gap-2 text-xs font-mono text-steel">
+        <span class="w-1.5 h-1.5 rounded-full bg-neon status-dot animate-pulse"></span>
+        <span>NODO ACTIVO</span>
+      </div>
+    </div>
+  </header>
+
+  <main class="relative flex-1 flex flex-col">
+    <div class="absolute inset-0 cyber-grid opacity-50"></div>
+    <div class="absolute inset-0 bg-gradient-to-b from-void via-transparent to-void"></div>
+
+    <section class="relative z-10 flex-1 flex flex-col justify-center py-16 sm:py-20">
+      <div class="max-w-5xl mx-auto px-5 w-full">
+
+        <!-- hero -->
+        <div class="text-center mb-14 sm:mb-16">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/25 bg-neon/5 text-[11px] font-mono text-neon mb-6 tracking-wider">
+            <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
+            ECOSISTEMA · SIN RASTREO · OPEN SOURCE
+          </div>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-4 glitch-title">
+            privacidad<span class="text-neon text-glow">/me</span>
+          </h1>
+          <p class="text-steel text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
+            Nodo central. Identidad, herramientas, noticias y formación.
+            Un solo punto de entrada al ecosistema de privacidad.
+          </p>
+        </div>
+
+        <!-- modules grid -->
+        <div class="grid sm:grid-cols-2 gap-4 sm:gap-5">
+
+          <!-- privtr.ee -->
+          <a href="https://starkprivacy.github.io/privacidad/" target="_blank" rel="noopener"
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
+                <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/>
+                  <path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/>
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono text-neon/70 tracking-wider">01</span>
+            </div>
+            <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">privtr.ee</h2>
+            <p class="text-sm text-steel leading-relaxed mb-4">Identidad digital y enlaces sin rastreo. Tarjeta de contacto opcional. Open source.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
+              ACCEDER
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+          <!-- tools -->
+          <a href="https://starkprivacy.github.io/privacidad-tools/" target="_blank" rel="noopener"
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
+                <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono text-neon/70 tracking-wider">02</span>
+            </div>
+            <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">privacidad / tools</h2>
+            <p class="text-sm text-steel leading-relaxed mb-4">Kit de privacidad en el navegador. Procesamiento local. Sin cuentas ni telemetría.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
+              ACCEDER
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+          <!-- news -->
+          <a href="https://starkprivacy.github.io/privacidad-news/" target="_blank" rel="noopener"
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
+                <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 1-2 2Zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/>
+                  <path d="M18 14h-8M15 18h-5M10 6h8v4h-8V6Z"/>
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono text-neon/70 tracking-wider">03</span>
+            </div>
+            <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">privacidad / news</h2>
+            <p class="text-sm text-steel leading-relaxed mb-4">Medio independiente de noticias sobre privacidad, soberanía digital y seguridad.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
+              ACCEDER
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+          <!-- academia -->
+          <a href="https://boringprivacy.io" target="_blank" rel="noopener"
+             class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
+            <div class="flex items-start justify-between mb-4">
+              <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
+                <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                  <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+                </svg>
+              </div>
+              <span class="text-[10px] font-mono text-neon/70 tracking-wider">04</span>
+            </div>
+            <h2 class="text-lg font-semibold text-white mb-1 group-hover:text-neon transition">boringprivacy.io</h2>
+            <p class="text-sm text-steel leading-relaxed mb-4">Academia. Formación práctica en privacidad, soberanía y libertad digital.</p>
+            <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon">
+              ACCEDER
+              <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+            </span>
+          </a>
+
+        </div>
+
+        <!-- footer note -->
+        <div class="mt-14 text-center">
+          <p class="text-xs font-mono text-steel/70 tracking-wide">
+            SIN PRIVACIDAD TU LIBERTAD ES SOLO UNA ILUSIÓN
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="relative z-10 border-t border-white/5 py-6">
+    <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-steel">
+      <span class="font-mono">privacidad/me · hub</span>
+      <div class="flex items-center gap-4">
+        <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">X</a>
+        <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">Telegram</a>
+        <a href="https://github.com/StarkPrivacy/privacidad_me" target="_blank" rel="noopener" class="hover:text-neon transition">GitHub</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
