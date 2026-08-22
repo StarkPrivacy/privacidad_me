@@ -64,13 +64,7 @@
       94% { transform: translate(-2px, 0); }
       96% { transform: translate(2px, 1px); text-shadow: 2px 0 #ff2a6d, -2px 0 #0a84ff; }
     }
-    .glitch-title {
-      animation: glitch 5.5s infinite;
-    }
-    @keyframes pulse-border {
-      0%, 100% { border-color: rgba(10,132,255,.25); }
-      50% { border-color: rgba(10,132,255,.55); }
-    }
+    .glitch-title { animation: glitch 5.5s infinite; }
     .module-card {
       transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease, background .2s ease;
     }
@@ -80,15 +74,9 @@
       transform: translateY(-4px);
       background: #0d1219;
     }
-    .status-dot {
-      box-shadow: 0 0 10px rgba(10,132,255,.9);
-    }
-    .terminal-line {
-      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-    }
-    .crt-flicker {
-      animation: flicker 8s infinite;
-    }
+    .status-dot { box-shadow: 0 0 10px rgba(10,132,255,.9); }
+    .terminal-line { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; }
+    .crt-flicker { animation: flicker 8s infinite; }
     @keyframes flicker {
       0%, 92%, 100% { opacity: 1; }
       93% { opacity: .85; }
@@ -99,6 +87,8 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
     }
+    .copy-btn { cursor: pointer; }
+    .copy-btn:active { opacity: .7; }
   </style>
 </head>
 <body class="font-sans text-mist antialiased selection:bg-neon/30 selection:text-white min-h-screen flex flex-col crt-flicker">
@@ -112,7 +102,6 @@
   <header class="relative z-10 border-b border-white/5 bg-void/90 backdrop-blur-xl">
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
-        <!-- Nuevo icono DedSec-inspired: ojo digital / nodo -->
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
           <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
             <circle cx="12" cy="12" r="3.2"/>
@@ -123,7 +112,7 @@
         <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
       </div>
       <div class="flex items-center gap-3 text-xs font-mono text-steel">
-        <span class="hidden sm:inline text-dim">SYS.STATUS</span>
+        <span class="hidden sm:inline text-dim">V3</span>
         <span class="w-1.5 h-1.5 rounded-full bg-neon status-dot animate-pulse"></span>
         <span class="text-neon">NODO ACTIVO</span>
       </div>
@@ -141,7 +130,7 @@
         <div class="text-center mb-12 sm:mb-14">
           <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-[11px] font-mono text-neon mb-5 tracking-wider">
             <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
-            ECOSISTEMA · SIN RASTREO · OPEN SOURCE
+            ECOSISTEMA · SIN RASTREO · CÓDIGO ABIERTO
           </div>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-4 glitch-title">
             privacidad<span class="text-neon text-glow">/me</span>
@@ -152,10 +141,9 @@
           </p>
         </div>
 
-        <!-- modules grid -->
+        <!-- módulos -->
         <div class="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-10">
 
-          <!-- 01 privtr.ee -->
           <a href="https://starkprivacy.github.io/privacidad/" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -175,7 +163,6 @@
             </span>
           </a>
 
-          <!-- 02 tools -->
           <a href="https://starkprivacy.github.io/privacidad-tools/" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -194,7 +181,6 @@
             </span>
           </a>
 
-          <!-- 03 news -->
           <a href="https://starkprivacy.github.io/privacidad-news/" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -214,7 +200,6 @@
             </span>
           </a>
 
-          <!-- 04 academia -->
           <a href="https://boringprivacy.io" target="_blank" rel="noopener"
              class="module-card group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
@@ -236,26 +221,33 @@
 
         </div>
 
-        <!-- terminal / status panel -->
+        <!-- terminal -->
         <div class="rounded-2xl bg-panel border border-white/10 p-5 sm:p-6 mb-10 overflow-hidden">
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-neon status-dot"></span>
-              <span class="text-xs font-mono text-neon tracking-wider">TERMINAL // STATUS</span>
+              <span class="text-xs font-mono text-neon tracking-wider">TERMINAL // ESTADO</span>
             </div>
-            <span class="text-[10px] font-mono text-dim">v0.1 · live</span>
+            <span class="text-[10px] font-mono text-dim">V3 · en vivo</span>
           </div>
           <div class="space-y-1.5 text-[12px] sm:text-[13px] terminal-line text-steel/90">
-            <p><span class="text-neon/80">></span> ecosystem.status .......... <span class="text-neon">ONLINE</span></p>
-            <p><span class="text-neon/80">></span> nodes.active .............. <span class="text-white">04</span></p>
-            <p><span class="text-neon/80">></span> tracking.cookies .......... <span class="text-white">NONE</span></p>
-            <p><span class="text-neon/80">></span> data.sales ................. <span class="text-white">DISABLED</span></p>
-            <p><span class="text-neon/80">></span> last.sync .................. <span class="text-white">2026-08-22T00:26Z</span></p>
+            <p><span class="text-neon/80">></span> estado.ecosistema .......... <span class="text-neon">EN LÍNEA</span></p>
+            <p><span class="text-neon/80">></span> nodos.activos .............. <span class="text-white">04</span></p>
+            <p><span class="text-neon/80">></span> cookies.rastreo ............ <span class="text-white">NINGUNA</span></p>
+            <p><span class="text-neon/80">></span> venta.datos ................ <span class="text-white">DESACTIVADA</span></p>
+            <p><span class="text-neon/80">></span> última.carga ............... <span class="text-white" id="last-load">—</span></p>
+            <p class="pt-2 border-t border-white/5 mt-2"><span class="text-neon/80">></span> <span class="text-dim">// huella del visitante (solo local)</span></p>
+            <p><span class="text-neon/80">></span> dirección.ip ............... <span class="text-white" id="client-ip">consultando…</span></p>
+            <p><span class="text-neon/80">></span> sistema.operativo .......... <span class="text-white" id="client-os">—</span></p>
+            <p><span class="text-neon/80">></span> navegador .................. <span class="text-white" id="client-browser">—</span></p>
+            <p><span class="text-neon/80">></span> idioma ..................... <span class="text-white" id="client-lang">—</span></p>
+            <p><span class="text-neon/80">></span> resolución ................. <span class="text-white" id="client-screen">—</span></p>
             <p class="pt-1"><span class="text-neon/80">></span> <span class="text-dim">_</span></p>
           </div>
+          <p class="mt-4 text-[10px] text-dim leading-relaxed">La IP se consulta de forma puntual a un servicio externo solo para mostrarla aquí. No se almacena ni se envía a ningún servidor propio.</p>
         </div>
 
-        <!-- secondary links / canales -->
+        <!-- canales -->
         <div class="mb-10">
           <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4 text-center sm:text-left">CANALES · ENLACES RÁPIDOS</h3>
           <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
@@ -282,19 +274,50 @@
           </div>
         </div>
 
-        <!-- principios rápidos -->
-        <div class="grid sm:grid-cols-3 gap-4 mb-12">
-          <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
-            <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">01 · LOCAL</div>
-            <p class="text-sm text-steel leading-relaxed">Las herramientas se ejecutan en tu dispositivo. Nada se sube a servidores externos.</p>
+        <!-- filosofía -->
+        <div class="mb-10">
+          <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4">FILOSOFÍA</h3>
+          <div class="grid sm:grid-cols-3 gap-4">
+            <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
+              <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">01 · LOCAL</div>
+              <p class="text-sm text-steel leading-relaxed">Las herramientas se ejecutan en tu dispositivo. Nada se sube a servidores externos.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
+              <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">02 · AUDITABLE</div>
+              <p class="text-sm text-steel leading-relaxed">Código abierto. Puedes revisar, modificar y desplegar por tu cuenta.</p>
+            </div>
+            <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
+              <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">03 · SIN PRODUCTO</div>
+              <p class="text-sm text-steel leading-relaxed">Tú no eres el producto. No hay venta de datos ni grafo social.</p>
+            </div>
           </div>
-          <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
-            <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">02 · AUDITABLE</div>
-            <p class="text-sm text-steel leading-relaxed">Código abierto. Puedes revisar, modificar y desplegar por tu cuenta.</p>
-          </div>
-          <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
-            <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">03 · SIN PRODUCTO</div>
-            <p class="text-sm text-steel leading-relaxed">Tú no eres el producto. No hay venta de datos ni grafo social.</p>
+          <p class="mt-5 text-sm text-steel leading-relaxed max-w-2xl">
+            La privacidad no es un privilegio ni una postura radical. Es la condición necesaria para la libertad real.
+            Sin ella, cada decisión, cada relación y cada pensamiento queda expuesto a quien tenga el poder de observarlo.
+          </p>
+        </div>
+
+        <!-- donaciones -->
+        <div class="mb-12">
+          <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4">DONACIONES</h3>
+          <p class="text-sm text-steel leading-relaxed mb-5 max-w-2xl">
+            Todo el ecosistema se mantiene gracias al apoyo de la comunidad. Solo se aceptan Bitcoin y Monero.
+          </p>
+          <div class="grid sm:grid-cols-2 gap-4">
+            <div class="p-5 rounded-xl bg-panel border border-white/10">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-orange-400 font-bold text-lg">₿</span>
+                <span class="font-semibold text-white">Bitcoin</span>
+              </div>
+              <p class="text-[11px] font-mono text-steel break-all select-all">Próximamente</p>
+            </div>
+            <div class="p-5 rounded-xl bg-panel border border-white/10">
+              <div class="flex items-center gap-2 mb-3">
+                <span class="text-orange-500 font-bold text-lg">ɱ</span>
+                <span class="font-semibold text-white">Monero</span>
+              </div>
+              <p class="text-[11px] font-mono text-steel break-all select-all">Próximamente</p>
+            </div>
           </div>
         </div>
 
@@ -310,7 +333,7 @@
 
   <footer class="relative z-10 border-t border-white/5 py-6">
     <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-steel">
-      <span class="font-mono">privacidad/me · hub · cooking</span>
+      <span class="font-mono">privacidad/me · hub · V3</span>
       <div class="flex items-center gap-4">
         <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">X</a>
         <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition">Telegram</a>
@@ -318,6 +341,45 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    (function () {
+      // Fecha y hora de carga (formato español)
+      const now = new Date();
+      const opts = { year: 'numeric', month: '2-digit', day: '2-digit', hour: '2-digit', minute: '2-digit', second: '2-digit', hour12: false };
+      const formatted = now.toLocaleString('es-ES', opts).replace(',', '');
+      document.getElementById('last-load').textContent = formatted;
+
+      // Sistema operativo y navegador (heurística ligera)
+      const ua = navigator.userAgent;
+      let os = 'Desconocido';
+      if (/Windows NT 10/.test(ua)) os = 'Windows 10/11';
+      else if (/Windows/.test(ua)) os = 'Windows';
+      else if (/Mac OS X/.test(ua)) os = 'macOS';
+      else if (/Android/.test(ua)) os = 'Android';
+      else if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
+      else if (/Linux/.test(ua)) os = 'Linux';
+      else if (/CrOS/.test(ua)) os = 'Chrome OS';
+      document.getElementById('client-os').textContent = os;
+
+      let browser = 'Desconocido';
+      if (/Edg\//.test(ua)) browser = 'Microsoft Edge';
+      else if (/Chrome\//.test(ua) && !/Edg\//.test(ua)) browser = 'Chrome';
+      else if (/Firefox\//.test(ua)) browser = 'Firefox';
+      else if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) browser = 'Safari';
+      else if (/OPR\//.test(ua)) browser = 'Opera';
+      document.getElementById('client-browser').textContent = browser;
+
+      document.getElementById('client-lang').textContent = navigator.language || navigator.userLanguage || '—';
+      document.getElementById('client-screen').textContent = window.screen.width + '×' + window.screen.height;
+
+      // IP pública (consulta puntual, no se almacena)
+      fetch('https://api.ipify.org?format=json')
+        .then(r => r.json())
+        .then(d => { document.getElementById('client-ip').textContent = d.ip || 'no disponible'; })
+        .catch(() => { document.getElementById('client-ip').textContent = 'no disponible'; });
+    })();
+  </script>
 
 </body>
 </html>
