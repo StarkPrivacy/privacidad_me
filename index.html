@@ -118,27 +118,47 @@
       white-space: nowrap;
       background: rgba(10,132,255,.04);
       border-bottom: 1px solid rgba(10,132,255,.12);
+      min-height: 1.75rem;
     }
     .ticker-track {
       display: inline-flex;
       width: max-content;
-      animation: ticker-scroll 45s linear infinite;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      will-change: transform;
     }
-    .ticker-track:hover { animation-play-state: paused; }
-    @keyframes ticker-scroll {
+    .ticker-track.enter {
+      animation: ticker-enter 28s linear forwards;
+    }
+    .ticker-track.loop {
+      animation: ticker-loop 36s linear infinite;
+    }
+    @keyframes ticker-enter {
+      0% { transform: translateX(100vw); }
+      100% { transform: translateX(-100%); }
+    }
+    @keyframes ticker-loop {
       0% { transform: translateX(0); }
       100% { transform: translateX(-50%); }
     }
+    .ticker-track:hover { animation-play-state: paused; }
     .ticker-item {
       display: inline-flex;
       align-items: center;
       flex-shrink: 0;
-      padding-right: 4rem;
+      padding-right: 3.5rem;
     }
     .donation-box {
       border: 1px solid rgba(10,132,255,.22);
       background: linear-gradient(135deg, rgba(10,132,255,.06) 0%, rgba(11,15,20,.9) 100%);
+    }
+    .social-btn {
+      transition: border-color .2s ease, background .2s ease, transform .15s ease, box-shadow .2s ease;
+    }
+    .social-btn:hover {
+      border-color: rgba(10,132,255,.45);
+      background: #0d1219;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 20px rgba(10,132,255,.12);
     }
   </style>
 </head>
@@ -152,7 +172,6 @@
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
-          <!-- icono simple: ojo / privacidad -->
           <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
             <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
             <circle cx="12" cy="12" r="3"/>
@@ -167,40 +186,9 @@
     </div>
   </header>
 
-  <!-- Banner -->
+  <!-- Banner: vacío al cargar; JS lo rellena -->
   <div class="relative z-10 ticker-wrap">
-    <div class="ticker-track text-[11px] py-1.5" id="ticker-content">
-      <div class="ticker-item">
-        <span class="text-steel/70">tranquilo, no se guarda</span>
-        <span class="text-dim mx-3">·</span>
-        <span class="text-neon">IP:</span><span class="text-steel/90"> <span id="t-ip">…</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">sistema:</span><span class="text-steel/90"> <span id="t-os">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">navegador:</span><span class="text-steel/90"> <span id="t-browser">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">idioma:</span><span class="text-steel/90"> <span id="t-lang">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">pantalla:</span><span class="text-steel/90"> <span id="t-screen">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">carga:</span><span class="text-steel/90"> <span id="t-load">—</span></span>
-      </div>
-      <div class="ticker-item">
-        <span class="text-steel/70">tranquilo, no se guarda</span>
-        <span class="text-dim mx-3">·</span>
-        <span class="text-neon">IP:</span><span class="text-steel/90"> <span id="t-ip2">…</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">sistema:</span><span class="text-steel/90"> <span id="t-os2">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">navegador:</span><span class="text-steel/90"> <span id="t-browser2">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">idioma:</span><span class="text-steel/90"> <span id="t-lang2">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">pantalla:</span><span class="text-steel/90"> <span id="t-screen2">—</span></span>
-        <span class="text-dim mx-3">|</span>
-        <span class="text-neon">carga:</span><span class="text-steel/90"> <span id="t-load2">—</span></span>
-      </div>
-    </div>
+    <div class="ticker-track text-[11px] py-1.5" id="ticker-track"></div>
   </div>
 
   <main class="relative flex-1 flex flex-col">
@@ -210,9 +198,8 @@
     <section class="relative z-10 flex-1 flex flex-col justify-center py-12 sm:py-16">
       <div class="max-w-5xl mx-auto px-5 w-full">
 
-        <!-- hero centrado -->
         <div class="text-center mb-12 sm:mb-14">
-          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">sin cookies · sin telemetría</p>
+          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">Sin telemetría · Con privacidad</p>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-4 glitch-title">
             privacidad<span class="text-neon text-glow">/me</span>
           </h1>
@@ -223,7 +210,6 @@
           </p>
         </div>
 
-        <!-- 01 boringprivacy.io -->
         <a href="https://boringprivacy.io" target="_blank" rel="noopener"
            class="module-card group block mb-5 p-5 sm:p-6 rounded-2xl bg-panel border border-neon/25 hover-sound">
           <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
@@ -247,7 +233,6 @@
           </div>
         </a>
 
-        <!-- nodos bloqueados -->
         <div class="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-10">
 
           <div class="module-card locked group block p-6 rounded-2xl bg-panel border border-white/10">
@@ -323,7 +308,6 @@
 
         </div>
 
-        <!-- terminal -->
         <div class="rounded-2xl bg-panel border border-white/10 p-5 sm:p-6 mb-10 overflow-hidden">
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
@@ -336,39 +320,38 @@
             <p><span class="text-neon/80">></span> estado ..................... <span class="text-amber">en desarrollo</span></p>
             <p><span class="text-neon/80">></span> nodos abiertos ............. <span class="text-white">1 / 5</span></p>
             <p><span class="text-neon/80">></span> cookies de rastreo ......... <span class="text-white">ninguna</span></p>
-            <p><span class="text-neon/80">></span> última carga ............... <span class="text-white" id="last-load">—</span></p>
+            <p><span class="text-neon/80">></span> momento de acceso .......... <span class="text-white" id="last-load">—</span></p>
             <p class="pt-1"><span class="text-neon/80">></span> <span class="text-dim">_</span></p>
           </div>
         </div>
 
-        <!-- canales -->
+        <!-- redes -->
         <div class="mb-10 text-center">
-          <h3 class="text-xs font-mono text-steel mb-4">por aquí divulgo</h3>
-          <div class="flex flex-wrap justify-center gap-3">
+          <h3 class="text-xs font-mono text-neon/70 mb-5 tracking-wider">por aquí divulgo</h3>
+          <div class="inline-flex flex-wrap justify-center gap-2.5 p-1.5 rounded-2xl bg-panel/50 border border-white/5">
             <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+               class="social-btn hover-sound inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-panel border border-white/8 text-sm text-steel hover:text-white">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
               X
             </a>
             <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+               class="social-btn hover-sound inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-panel border border-white/8 text-sm text-steel hover:text-white">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
               Telegram
             </a>
             <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+               class="social-btn hover-sound inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-panel border border-white/8 text-sm text-steel hover:text-white">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               YouTube
             </a>
             <a href="https://www.instagram.com/starkprivacy" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+               class="social-btn hover-sound inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-panel border border-white/8 text-sm text-steel hover:text-white">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
               Instagram
             </a>
           </div>
         </div>
 
-        <!-- nota personal -->
         <div class="mb-10 max-w-2xl mx-auto text-center">
           <p class="text-sm text-steel leading-relaxed">
             No vendo tus datos ni me lucro de ellos. Aquí se respeta tu privacidad y se intenta hacerla más sencilla para todo el mundo.
@@ -378,7 +361,6 @@
           </p>
         </div>
 
-        <!-- donaciones -->
         <div class="mb-12 max-w-2xl mx-auto">
           <div class="donation-box rounded-2xl p-6 text-center">
             <h3 class="text-xs font-mono text-neon mb-3 tracking-wider">apoyar</h3>
@@ -398,7 +380,6 @@
           </div>
         </div>
 
-        <!-- cita -->
         <div class="text-center pt-2 pb-4">
           <blockquote class="relative inline-block max-w-md">
             <span class="absolute -left-3 -top-1 text-2xl text-neon/40 font-serif leading-none">“</span>
@@ -455,29 +436,83 @@
         'ar': 'árabe', 'nl': 'neerlandés', 'pl': 'polaco', 'sv': 'sueco'
       };
       const rawLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
-      let langName = langMap[rawLang] || langMap[rawLang.split('-')[0]] || rawLang || '—';
+      const langName = langMap[rawLang] || langMap[rawLang.split('-')[0]] || rawLang || '—';
 
       const screenRes = window.screen.width + '×' + window.screen.height;
+      let tz = '—';
+      try { tz = Intl.DateTimeFormat().resolvedOptions().timeZone || '—'; } catch (e) {}
+
+      const cores = navigator.hardwareConcurrency ? navigator.hardwareConcurrency + ' núcleos' : null;
 
       document.getElementById('last-load').textContent = formatted;
 
-      function fillBanner(ip) {
+      function dataHtml(ip) {
         const ipText = ip || 'no disponible';
-        ['', '2'].forEach(suf => {
-          document.getElementById('t-ip' + suf).textContent = ipText;
-          document.getElementById('t-os' + suf).textContent = os;
-          document.getElementById('t-browser' + suf).textContent = browser;
-          document.getElementById('t-lang' + suf).textContent = langName;
-          document.getElementById('t-screen' + suf).textContent = screenRes;
-          document.getElementById('t-load' + suf).textContent = formatted;
-        });
+        let html = '';
+        html += '<span class="text-neon">IP:</span><span class="text-steel/90"> ' + ipText + '</span>';
+        html += '<span class="text-dim mx-3">|</span>';
+        html += '<span class="text-neon">sistema:</span><span class="text-steel/90"> ' + os + '</span>';
+        html += '<span class="text-dim mx-3">|</span>';
+        html += '<span class="text-neon">navegador:</span><span class="text-steel/90"> ' + browser + '</span>';
+        html += '<span class="text-dim mx-3">|</span>';
+        html += '<span class="text-neon">idioma:</span><span class="text-steel/90"> ' + langName + '</span>';
+        html += '<span class="text-dim mx-3">|</span>';
+        html += '<span class="text-neon">pantalla:</span><span class="text-steel/90"> ' + screenRes + '</span>';
+        html += '<span class="text-dim mx-3">|</span>';
+        html += '<span class="text-neon">zona:</span><span class="text-steel/90"> ' + tz + '</span>';
+        if (cores) {
+          html += '<span class="text-dim mx-3">|</span>';
+          html += '<span class="text-neon">cpu:</span><span class="text-steel/90"> ' + cores + '</span>';
+        }
+        html += '<span class="text-dim mx-3">|</span>';
+        html += '<span class="text-neon">momento de acceso:</span><span class="text-steel/90"> ' + formatted + '</span>';
+        return html;
       }
-      fillBanner(null);
+
+      const intro = '<span class="text-steel/70">tranquilo — esto no se guarda ni se envía</span><span class="text-dim mx-3">·</span>';
+
+      const track = document.getElementById('ticker-track');
+
+      function startEnter(ip) {
+        const d = dataHtml(ip);
+        track.innerHTML =
+          '<div class="ticker-item">' + intro + d + '</div>';
+        track.classList.remove('loop');
+        track.classList.add('enter');
+
+        track.addEventListener('animationend', function onEnd() {
+          track.removeEventListener('animationend', onEnd);
+          startLoop(ip);
+        }, { once: true });
+      }
+
+      function startLoop(ip) {
+        const d = dataHtml(ip);
+        track.classList.remove('enter');
+        track.innerHTML =
+          '<div class="ticker-item">' + d + '</div>' +
+          '<div class="ticker-item">' + d + '</div>';
+        // force reflow then loop
+        void track.offsetWidth;
+        track.classList.add('loop');
+      }
+
+      // Arranque: vacío → entra desde la derecha con intro
+      startEnter(null);
 
       fetch('https://api.ipify.org?format=json')
         .then(r => r.json())
-        .then(d => fillBanner(d.ip))
-        .catch(() => fillBanner(null));
+        .then(d => {
+          // Si aún está en fase enter, actualizar contenido manteniendo la animación es complicado;
+          // reconstruimos con IP real si la animación aún no terminó, o el loop ya la tendrá.
+          if (track.classList.contains('enter')) {
+            const dHtml = dataHtml(d.ip);
+            track.innerHTML = '<div class="ticker-item">' + intro + dHtml + '</div>';
+          } else if (track.classList.contains('loop')) {
+            startLoop(d.ip);
+          }
+        })
+        .catch(() => {});
 
       let audioCtx;
       function playHoverSound() {
