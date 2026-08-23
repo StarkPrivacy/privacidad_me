@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>privacidad / me — Hub</title>
-  <meta name="description" content="Nodo central del ecosistema de privacidad: identidad, herramientas, noticias y academia.">
+  <title>privacidad / me</title>
+  <meta name="description" content="Punto de entrada al ecosistema de privacidad de Stark.">
   <meta name="theme-color" content="#05070a">
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
@@ -72,7 +72,7 @@
     .module-card:not(.locked):hover {
       border-color: rgba(10,132,255,.55);
       box-shadow: 0 0 32px rgba(10,132,255,.2), inset 0 0 20px rgba(10,132,255,.04);
-      transform: translateY(-4px);
+      transform: translateY(-3px);
       background: #0d1219;
     }
     .module-card.locked {
@@ -80,7 +80,6 @@
       cursor: not-allowed;
       pointer-events: none;
     }
-    /* Redacción fuerte estilo documento clasificado */
     .redacted {
       position: relative;
       display: inline-block;
@@ -89,7 +88,6 @@
       box-shadow: 0 0 0 3px #0a0a0a;
       border-radius: 1px;
       user-select: none;
-      letter-spacing: 0.02em;
     }
     .redacted::before {
       content: '';
@@ -140,7 +138,6 @@
   <div class="fixed inset-0 vignette z-40 pointer-events-none"></div>
   <div class="fixed inset-0 noise z-30 pointer-events-none"></div>
 
-  <!-- header -->
   <header class="relative z-10 border-b border-white/5 bg-void/90 backdrop-blur-xl">
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
@@ -155,43 +152,42 @@
       </div>
       <div class="flex items-center gap-3 text-xs font-mono text-steel">
         <span class="w-1.5 h-1.5 rounded-full bg-neon status-dot animate-pulse"></span>
-        <span class="text-neon">NODO ACTIVO</span>
+        <span class="text-neon">online</span>
       </div>
     </div>
   </header>
 
-  <!-- Banner huella -->
   <div class="relative z-10 ticker-wrap">
     <div class="ticker text-[11px] text-steel/90 py-1.5" id="ticker-content">
-      <span class="text-neon/70">HUELLA · </span>
+      <span class="text-neon/70">huella · </span>
       <span id="t-ip">IP: consultando…</span>
       <span class="mx-3 text-dim">|</span>
       <span id="t-os">SO: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-browser">Navegador: —</span>
+      <span id="t-browser">navegador: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-lang">Idioma: —</span>
+      <span id="t-lang">idioma: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-screen">Resolución: —</span>
+      <span id="t-screen">pantalla: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-load">Carga: —</span>
+      <span id="t-load">carga: —</span>
       <span class="mx-4 text-dim">·</span>
-      <span class="text-steel/70">Estos datos no los guardamos, tranquilo ;)</span>
+      <span class="text-steel/70">esto no se guarda, solo se muestra aquí</span>
       <span class="mx-4 text-dim">//</span>
-      <span class="text-neon/70">HUELLA · </span>
+      <span class="text-neon/70">huella · </span>
       <span id="t-ip2">IP: consultando…</span>
       <span class="mx-3 text-dim">|</span>
       <span id="t-os2">SO: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-browser2">Navegador: —</span>
+      <span id="t-browser2">navegador: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-lang2">Idioma: —</span>
+      <span id="t-lang2">idioma: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-screen2">Resolución: —</span>
+      <span id="t-screen2">pantalla: —</span>
       <span class="mx-3 text-dim">|</span>
-      <span id="t-load2">Carga: —</span>
+      <span id="t-load2">carga: —</span>
       <span class="mx-4 text-dim">·</span>
-      <span class="text-steel/70">Estos datos no los guardamos, tranquilo ;)</span>
+      <span class="text-steel/70">esto no se guarda, solo se muestra aquí</span>
     </div>
   </div>
 
@@ -203,21 +199,19 @@
       <div class="max-w-5xl mx-auto px-5 w-full">
 
         <!-- hero -->
-        <div class="text-center mb-12 sm:mb-14">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-neon/30 bg-neon/5 text-[11px] font-mono text-neon mb-5 tracking-wider">
-            <span class="w-1.5 h-1.5 rounded-full bg-neon animate-pulse"></span>
-            ECOSISTEMA · SIN RASTREO · CÓDIGO ABIERTO
-          </div>
+        <div class="mb-12 sm:mb-14">
+          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">// en construcción · sin telemetría</p>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-4 glitch-title">
             privacidad<span class="text-neon text-glow">/me</span>
           </h1>
-          <p class="text-steel text-base sm:text-lg max-w-xl mx-auto leading-relaxed">
-            Nodo central. Identidad, herramientas, noticias y formación.<br class="hidden sm:block">
-            Un solo punto de entrada al ecosistema.
+          <p class="text-steel text-base sm:text-lg max-w-lg leading-relaxed">
+            Aquí se van juntando las piezas.
+            Identidad, herramientas, noticias, apps y formación.
+            De momento la mayoría está cerrada; se irán abriendo cuando estén listas.
           </p>
         </div>
 
-        <!-- Nodo 01 destacado: boringprivacy.io -->
+        <!-- 01 boringprivacy.io -->
         <a href="https://boringprivacy.io" target="_blank" rel="noopener"
            class="module-card group block mb-5 p-5 sm:p-6 rounded-2xl bg-panel border border-neon/25 hover-sound">
           <div class="flex flex-col sm:flex-row sm:items-center gap-4 sm:gap-6">
@@ -232,19 +226,18 @@
             </div>
             <div class="flex-1 min-w-0">
               <h2 class="text-lg font-semibold text-white group-hover:text-neon transition">boringprivacy.io</h2>
-              <p class="text-sm text-steel leading-relaxed mt-0.5">Academia. Formación práctica en privacidad y soberanía digital.</p>
+              <p class="text-sm text-steel leading-relaxed mt-0.5">La academia. Formación práctica, sin humo.</p>
             </div>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-neon shrink-0">
-              ACCEDER
+              entrar
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </span>
           </div>
         </a>
 
-        <!-- Resto de nodos (bloqueados) -->
+        <!-- nodos bloqueados -->
         <div class="grid sm:grid-cols-2 gap-4 sm:gap-5 mb-10">
 
-          <!-- 02 privtr.ee BLOQUEADO -->
           <div class="module-card locked group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
@@ -259,11 +252,10 @@
             <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Identidad digital y enlaces. Tarjeta de contacto opcional.</span></p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-steel/80">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              BLOQUEADO
+              cerrado
             </span>
           </div>
 
-          <!-- 03 tools BLOQUEADO -->
           <div class="module-card locked group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
@@ -274,14 +266,13 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">03</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privacidad / tools</span></h2>
-            <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Kit de utilidades en el navegador. Procesamiento local.</span></p>
+            <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Utilidades en el navegador. Todo local.</span></p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-steel/80">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              BLOQUEADO
+              cerrado
             </span>
           </div>
 
-          <!-- 04 news BLOQUEADO -->
           <div class="module-card locked group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
@@ -293,14 +284,13 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">04</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privacidad / news</span></h2>
-            <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Noticias sobre privacidad, soberanía digital y seguridad.</span></p>
+            <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Noticias de privacidad y soberanía digital.</span></p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-steel/80">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              BLOQUEADO
+              cerrado
             </span>
           </div>
 
-          <!-- 05 app BLOQUEADO (nuevo) -->
           <div class="module-card locked group block p-6 rounded-2xl bg-panel border border-white/10">
             <div class="flex items-start justify-between mb-4">
               <div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30 flex items-center justify-center">
@@ -312,10 +302,10 @@
               <span class="text-[10px] font-mono text-neon/70 tracking-wider">05</span>
             </div>
             <h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privacidad / app</span></h2>
-            <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Recopilatorio de aplicaciones centradas en la privacidad.</span></p>
+            <p class="text-sm text-steel leading-relaxed mb-4"><span class="redacted">Lista de apps orientadas a la privacidad.</span></p>
             <span class="inline-flex items-center gap-1.5 text-xs font-mono text-steel/80">
               <svg class="w-3.5 h-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-              BLOQUEADO
+              cerrado
             </span>
           </div>
 
@@ -326,106 +316,85 @@
           <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-2">
               <span class="w-2 h-2 rounded-full bg-neon status-dot"></span>
-              <span class="text-xs font-mono text-neon tracking-wider">TERMINAL // ESTADO</span>
+              <span class="text-xs font-mono text-neon tracking-wider">terminal</span>
             </div>
-            <span class="text-[10px] font-mono text-dim">en vivo</span>
+            <span class="text-[10px] font-mono text-dim">live</span>
           </div>
           <div class="space-y-1.5 text-[12px] sm:text-[13px] terminal-line text-steel/90">
-            <p><span class="text-neon/80">></span> estado.ecosistema .......... <span class="text-amber">EN DESARROLLO</span></p>
-            <p><span class="text-neon/80">></span> nodos.activos .............. <span class="text-white">01 / 05</span></p>
-            <p><span class="text-neon/80">></span> cookies.rastreo ............ <span class="text-white">NINGUNA</span></p>
-            <p><span class="text-neon/80">></span> venta.datos ................ <span class="text-white">DESACTIVADA</span></p>
-            <p><span class="text-neon/80">></span> última.carga ............... <span class="text-white" id="last-load">—</span></p>
+            <p><span class="text-neon/80">></span> estado ..................... <span class="text-amber">en desarrollo</span></p>
+            <p><span class="text-neon/80">></span> nodos abiertos ............. <span class="text-white">1 / 5</span></p>
+            <p><span class="text-neon/80">></span> cookies de rastreo ......... <span class="text-white">ninguna</span></p>
+            <p><span class="text-neon/80">></span> última carga ............... <span class="text-white" id="last-load">—</span></p>
             <p class="pt-1"><span class="text-neon/80">></span> <span class="text-dim">_</span></p>
           </div>
         </div>
 
         <!-- canales -->
         <div class="mb-10">
-          <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4 text-center sm:text-left">CANALES · ENLACES RÁPIDOS</h3>
-          <div class="grid grid-cols-2 sm:grid-cols-4 gap-3">
+          <h3 class="text-xs font-mono text-steel mb-4">dónde encontrarme</h3>
+          <div class="flex flex-wrap gap-3">
             <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
-              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
-              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">X / Twitter</span>
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+              X
             </a>
             <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
-              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">Telegram</span>
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
+              Telegram
             </a>
             <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
-              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
-              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">YouTube</span>
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+              YouTube
             </a>
             <a href="https://github.com/StarkPrivacy" target="_blank" rel="noopener"
-               class="flex flex-col items-center gap-2 p-4 rounded-xl bg-panel/80 border border-white/8 hover:border-neon/40 hover:bg-panel transition group hover-sound">
-              <svg class="w-5 h-5 text-steel group-hover:text-neon transition" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              <span class="text-[11px] font-mono text-steel group-hover:text-white transition">GitHub</span>
+               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
+              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
+              GitHub
             </a>
           </div>
         </div>
 
-        <!-- filosofía -->
-        <div class="mb-10">
-          <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4">FILOSOFÍA</h3>
-          <div class="grid sm:grid-cols-3 gap-4">
-            <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
-              <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">01 · LOCAL</div>
-              <p class="text-sm text-steel leading-relaxed">Las herramientas se ejecutan en tu dispositivo. Nada se sube a servidores externos.</p>
-            </div>
-            <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
-              <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">02 · AUDITABLE</div>
-              <p class="text-sm text-steel leading-relaxed">Código abierto. Puedes revisar, modificar y desplegar por tu cuenta.</p>
-            </div>
-            <div class="p-4 rounded-xl border border-white/8 bg-panel/50">
-              <div class="text-[10px] font-mono text-neon mb-2 tracking-wider">03 · SIN PRODUCTO</div>
-              <p class="text-sm text-steel leading-relaxed">Tú no eres el producto. No hay venta de datos ni grafo social.</p>
-            </div>
-          </div>
-          <p class="mt-5 text-sm text-steel leading-relaxed max-w-2xl">
-            La privacidad no es un privilegio ni una postura radical. Es la condición necesaria para la libertad real.
-            Sin ella, cada decisión, cada relación y cada pensamiento queda expuesto a quien tenga el poder de observarlo.
+        <!-- nota personal -->
+        <div class="mb-10 max-w-2xl">
+          <p class="text-sm text-steel leading-relaxed">
+            No vendo datos. No hay cuentas obligatorias. Lo que se pueda hacer en tu dispositivo se hace ahí.
+            El resto se irá abriendo cuando tenga sentido, no antes.
+          </p>
+          <p class="text-sm text-steel leading-relaxed mt-3">
+            Si algo de esto te sirve, bien. Si no, también.
           </p>
         </div>
 
         <!-- donaciones -->
         <div class="mb-12">
-          <h3 class="text-xs font-mono text-neon/80 tracking-wider mb-4">DONACIONES</h3>
-          <p class="text-sm text-steel leading-relaxed mb-5 max-w-2xl">
-            Todo el ecosistema se mantiene gracias al apoyo de la comunidad. Solo se aceptan Bitcoin y Monero.
+          <h3 class="text-xs font-mono text-steel mb-3">apoyar</h3>
+          <p class="text-sm text-steel leading-relaxed mb-4 max-w-xl">
+            Si quieres echar una mano, solo BTC o XMR. Cuando haya direcciones estables las pondré aquí.
           </p>
-          <div class="grid sm:grid-cols-2 gap-4">
-            <div class="p-5 rounded-xl bg-panel border border-white/10">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-orange-400 font-bold text-lg">₿</span>
-                <span class="font-semibold text-white">Bitcoin</span>
-              </div>
-              <p class="text-[11px] font-mono text-steel break-all select-all">Próximamente</p>
+          <div class="flex flex-wrap gap-3">
+            <div class="px-4 py-3 rounded-lg bg-panel border border-white/10">
+              <span class="text-orange-400 font-mono text-sm">₿ BTC</span>
+              <span class="text-[11px] text-dim ml-2">próximamente</span>
             </div>
-            <div class="p-5 rounded-xl bg-panel border border-white/10">
-              <div class="flex items-center gap-2 mb-3">
-                <span class="text-orange-500 font-bold text-lg">ɱ</span>
-                <span class="font-semibold text-white">Monero</span>
-              </div>
-              <p class="text-[11px] font-mono text-steel break-all select-all">Próximamente</p>
+            <div class="px-4 py-3 rounded-lg bg-panel border border-white/10">
+              <span class="text-orange-500 font-mono text-sm">ɱ XMR</span>
+              <span class="text-[11px] text-dim ml-2">próximamente</span>
             </div>
           </div>
         </div>
 
-        <div class="text-center">
-          <p class="text-xs font-mono text-steel/60 tracking-wide">
-            SIN PRIVACIDAD TU LIBERTAD ES SOLO UNA ILUSIÓN
-          </p>
-        </div>
+        <p class="text-xs font-mono text-steel/50 tracking-wide">
+          sin privacidad tu libertad es solo una ilusión
+        </p>
       </div>
     </section>
   </main>
 
-  <footer class="relative z-10 border-t border-white/5 py-6">
-    <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-steel">
-      <span class="font-mono">privacidad/me · hub</span>
+  <footer class="relative z-10 border-t border-white/5 py-5">
+    <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-steel">
+      <span class="font-mono">privacidad/me</span>
       <div class="flex items-center gap-4">
         <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">X</a>
         <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">Telegram</a>
@@ -441,7 +410,7 @@
       const formatted = now.toLocaleString('es-ES', opts).replace(',', '');
 
       const ua = navigator.userAgent;
-      let os = 'Desconocido';
+      let os = 'desconocido';
       if (/Windows NT 10/.test(ua)) os = 'Windows 10/11';
       else if (/Windows/.test(ua)) os = 'Windows';
       else if (/Mac OS X/.test(ua)) os = 'macOS';
@@ -450,20 +419,20 @@
       else if (/Linux/.test(ua)) os = 'Linux';
       else if (/CrOS/.test(ua)) os = 'Chrome OS';
 
-      let browser = 'Desconocido';
-      if (/Edg\//.test(ua)) browser = 'Microsoft Edge';
+      let browser = 'desconocido';
+      if (/Edg\//.test(ua)) browser = 'Edge';
       else if (/Chrome\//.test(ua) && !/Edg\//.test(ua)) browser = 'Chrome';
       else if (/Firefox\//.test(ua)) browser = 'Firefox';
       else if (/Safari\//.test(ua) && !/Chrome\//.test(ua)) browser = 'Safari';
       else if (/OPR\//.test(ua)) browser = 'Opera';
 
       const langMap = {
-        'es': 'Español', 'es-ES': 'Español', 'es-MX': 'Español', 'es-AR': 'Español',
-        'en': 'Inglés', 'en-US': 'Inglés', 'en-GB': 'Inglés',
-        'fr': 'Francés', 'de': 'Alemán', 'it': 'Italiano', 'pt': 'Portugués',
-        'pt-BR': 'Portugués', 'ca': 'Catalán', 'eu': 'Euskera', 'gl': 'Gallego',
-        'ru': 'Ruso', 'zh': 'Chino', 'ja': 'Japonés', 'ko': 'Coreano',
-        'ar': 'Árabe', 'nl': 'Neerlandés', 'pl': 'Polaco', 'sv': 'Sueco'
+        'es': 'español', 'es-ES': 'español', 'es-MX': 'español', 'es-AR': 'español',
+        'en': 'inglés', 'en-US': 'inglés', 'en-GB': 'inglés',
+        'fr': 'francés', 'de': 'alemán', 'it': 'italiano', 'pt': 'portugués',
+        'pt-BR': 'portugués', 'ca': 'catalán', 'eu': 'euskera', 'gl': 'gallego',
+        'ru': 'ruso', 'zh': 'chino', 'ja': 'japonés', 'ko': 'coreano',
+        'ar': 'árabe', 'nl': 'neerlandés', 'pl': 'polaco', 'sv': 'sueco'
       };
       const rawLang = (navigator.language || navigator.userLanguage || '').toLowerCase();
       let langName = langMap[rawLang] || langMap[rawLang.split('-')[0]] || rawLang || '—';
@@ -477,10 +446,10 @@
         ['', '2'].forEach(suf => {
           document.getElementById('t-ip' + suf).textContent = 'IP: ' + ipText;
           document.getElementById('t-os' + suf).textContent = 'SO: ' + os;
-          document.getElementById('t-browser' + suf).textContent = 'Navegador: ' + browser;
-          document.getElementById('t-lang' + suf).textContent = 'Idioma: ' + langName;
-          document.getElementById('t-screen' + suf).textContent = 'Resolución: ' + screenRes;
-          document.getElementById('t-load' + suf).textContent = 'Carga: ' + formatted;
+          document.getElementById('t-browser' + suf).textContent = 'navegador: ' + browser;
+          document.getElementById('t-lang' + suf).textContent = 'idioma: ' + langName;
+          document.getElementById('t-screen' + suf).textContent = 'pantalla: ' + screenRes;
+          document.getElementById('t-load' + suf).textContent = 'carga: ' + formatted;
         });
       }
       fillBanner(null);
