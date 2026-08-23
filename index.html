@@ -113,23 +113,29 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
     }
+    /* Ticker seamless */
     .ticker-wrap {
       overflow: hidden;
       white-space: nowrap;
       background: rgba(10,132,255,.04);
       border-bottom: 1px solid rgba(10,132,255,.12);
     }
-    .ticker {
-      display: inline-block;
-      padding-left: 100%;
-      animation: ticker 42s linear infinite;
+    .ticker-track {
+      display: inline-flex;
+      animation: ticker-scroll 40s linear infinite;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
-    @keyframes ticker {
+    .ticker-track:hover { animation-play-state: paused; }
+    @keyframes ticker-scroll {
       0% { transform: translateX(0); }
-      100% { transform: translateX(-100%); }
+      100% { transform: translateX(-50%); }
     }
-    .ticker:hover { animation-play-state: paused; }
+    .ticker-item {
+      display: inline-flex;
+      align-items: center;
+      flex-shrink: 0;
+      padding-right: 3rem;
+    }
   </style>
 </head>
 <body class="font-sans text-mist antialiased selection:bg-neon/30 selection:text-white min-h-screen flex flex-col crt-flicker">
@@ -142,10 +148,12 @@
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
-          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
-            <circle cx="12" cy="12" r="3.2"/>
-            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
-            <path d="M12 5v2M12 17v2M5 12H3M21 12h-2" stroke-width="1.2" opacity=".7"/>
+          <!-- Guy Fawkes mask (line style) -->
+          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 10c0-4 3.5-7 8-7s8 3 8 7v2c0 1.5-.5 3-1.5 4L18 20H6l-.5-4C4.5 15 4 13.5 4 12v-2z"/>
+            <path d="M8.5 11.5c.5-1 1.5-1.5 2.5-1s1.5 1.5 1 2.5M15.5 11.5c-.5-1-1.5-1.5-2.5-1s-1.5 1.5-1 2.5"/>
+            <path d="M9 16.5c1 .8 2 .8 3 0s2-.8 3 0"/>
+            <path d="M12 3v2M7 5.5l1 1.5M17 5.5l-1 1.5" opacity=".6"/>
           </svg>
         </div>
         <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
@@ -157,37 +165,41 @@
     </div>
   </header>
 
+  <!-- Banner huella (seamless) -->
   <div class="relative z-10 ticker-wrap">
-    <div class="ticker text-[11px] text-steel/90 py-1.5" id="ticker-content">
-      <span class="text-neon/70">huella · </span>
-      <span id="t-ip">IP: consultando…</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-os">SO: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-browser">navegador: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-lang">idioma: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-screen">pantalla: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-load">carga: —</span>
-      <span class="mx-4 text-dim">·</span>
-      <span class="text-steel/70">esto no se guarda, solo se muestra aquí</span>
-      <span class="mx-4 text-dim">//</span>
-      <span class="text-neon/70">huella · </span>
-      <span id="t-ip2">IP: consultando…</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-os2">SO: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-browser2">navegador: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-lang2">idioma: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-screen2">pantalla: —</span>
-      <span class="mx-3 text-dim">|</span>
-      <span id="t-load2">carga: —</span>
-      <span class="mx-4 text-dim">·</span>
-      <span class="text-steel/70">esto no se guarda, solo se muestra aquí</span>
+    <div class="ticker-track text-[11px] py-1.5" id="ticker-content">
+      <div class="ticker-item">
+        <span class="text-neon">huella</span><span class="text-dim mx-2">·</span>
+        <span class="text-neon">ip</span><span class="text-steel/90">: <span id="t-ip">consultando…</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">sistema</span><span class="text-steel/90">: <span id="t-os">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">navegador</span><span class="text-steel/90">: <span id="t-browser">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">idioma</span><span class="text-steel/90">: <span id="t-lang">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">pantalla</span><span class="text-steel/90">: <span id="t-screen">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">carga</span><span class="text-steel/90">: <span id="t-load">—</span></span>
+        <span class="text-dim mx-4">·</span>
+        <span class="text-steel/70">esto no se guarda, solo se muestra aquí</span>
+      </div>
+      <div class="ticker-item">
+        <span class="text-neon">huella</span><span class="text-dim mx-2">·</span>
+        <span class="text-neon">ip</span><span class="text-steel/90">: <span id="t-ip2">consultando…</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">sistema</span><span class="text-steel/90">: <span id="t-os2">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">navegador</span><span class="text-steel/90">: <span id="t-browser2">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">idioma</span><span class="text-steel/90">: <span id="t-lang2">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">pantalla</span><span class="text-steel/90">: <span id="t-screen2">—</span></span>
+        <span class="text-dim mx-3">|</span>
+        <span class="text-neon">carga</span><span class="text-steel/90">: <span id="t-load2">—</span></span>
+        <span class="text-dim mx-4">·</span>
+        <span class="text-steel/70">esto no se guarda, solo se muestra aquí</span>
+      </div>
     </div>
   </div>
 
@@ -198,13 +210,13 @@
     <section class="relative z-10 flex-1 flex flex-col justify-center py-12 sm:py-16">
       <div class="max-w-5xl mx-auto px-5 w-full">
 
-        <!-- hero -->
-        <div class="mb-12 sm:mb-14">
-          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">// en construcción · sin telemetría</p>
+        <!-- hero centrado -->
+        <div class="text-center mb-12 sm:mb-14">
+          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">// hub · sin telemetría</p>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-4 glitch-title">
             privacidad<span class="text-neon text-glow">/me</span>
           </h1>
-          <p class="text-steel text-base sm:text-lg max-w-lg leading-relaxed">
+          <p class="text-steel text-base sm:text-lg max-w-lg mx-auto leading-relaxed">
             Aquí se van juntando las piezas.
             Identidad, herramientas, noticias, apps y formación.
             De momento la mayoría está cerrada; se irán abriendo cuando estén listas.
@@ -329,10 +341,10 @@
           </div>
         </div>
 
-        <!-- canales -->
-        <div class="mb-10">
+        <!-- canales (sin GitHub) -->
+        <div class="mb-10 text-center sm:text-left">
           <h3 class="text-xs font-mono text-steel mb-4">dónde encontrarme</h3>
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap justify-center sm:justify-start gap-3">
             <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener"
                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
@@ -348,16 +360,11 @@
               <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
               YouTube
             </a>
-            <a href="https://github.com/StarkPrivacy" target="_blank" rel="noopener"
-               class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
-              <svg class="w-4 h-4" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
-              GitHub
-            </a>
           </div>
         </div>
 
         <!-- nota personal -->
-        <div class="mb-10 max-w-2xl">
+        <div class="mb-10 max-w-2xl mx-auto text-center sm:text-left sm:mx-0">
           <p class="text-sm text-steel leading-relaxed">
             No vendo datos. No hay cuentas obligatorias. Lo que se pueda hacer en tu dispositivo se hace ahí.
             El resto se irá abriendo cuando tenga sentido, no antes.
@@ -368,12 +375,12 @@
         </div>
 
         <!-- donaciones -->
-        <div class="mb-12">
+        <div class="mb-12 text-center sm:text-left">
           <h3 class="text-xs font-mono text-steel mb-3">apoyar</h3>
-          <p class="text-sm text-steel leading-relaxed mb-4 max-w-xl">
+          <p class="text-sm text-steel leading-relaxed mb-4 max-w-xl mx-auto sm:mx-0">
             Si quieres echar una mano, solo BTC o XMR. Cuando haya direcciones estables las pondré aquí.
           </p>
-          <div class="flex flex-wrap gap-3">
+          <div class="flex flex-wrap justify-center sm:justify-start gap-3">
             <div class="px-4 py-3 rounded-lg bg-panel border border-white/10">
               <span class="text-orange-400 font-mono text-sm">₿ BTC</span>
               <span class="text-[11px] text-dim ml-2">próximamente</span>
@@ -385,9 +392,16 @@
           </div>
         </div>
 
-        <p class="text-xs font-mono text-steel/50 tracking-wide">
-          sin privacidad tu libertad es solo una ilusión
-        </p>
+        <!-- cita -->
+        <div class="text-center pt-2 pb-4">
+          <blockquote class="relative inline-block max-w-md">
+            <span class="absolute -left-3 -top-1 text-2xl text-neon/40 font-serif leading-none">“</span>
+            <p class="text-sm sm:text-base text-steel/80 italic tracking-wide px-4">
+              sin privacidad tu libertad es solo una ilusión
+            </p>
+            <span class="absolute -right-1 bottom-0 text-2xl text-neon/40 font-serif leading-none">”</span>
+          </blockquote>
+        </div>
       </div>
     </section>
   </main>
@@ -398,7 +412,6 @@
       <div class="flex items-center gap-4">
         <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">X</a>
         <a href="https://t.me/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">Telegram</a>
-        <a href="https://github.com/StarkPrivacy/privacidad_me" target="_blank" rel="noopener" class="hover:text-neon transition hover-sound">GitHub</a>
       </div>
     </div>
   </footer>
@@ -444,12 +457,12 @@
       function fillBanner(ip) {
         const ipText = ip || 'no disponible';
         ['', '2'].forEach(suf => {
-          document.getElementById('t-ip' + suf).textContent = 'IP: ' + ipText;
-          document.getElementById('t-os' + suf).textContent = 'SO: ' + os;
-          document.getElementById('t-browser' + suf).textContent = 'navegador: ' + browser;
-          document.getElementById('t-lang' + suf).textContent = 'idioma: ' + langName;
-          document.getElementById('t-screen' + suf).textContent = 'pantalla: ' + screenRes;
-          document.getElementById('t-load' + suf).textContent = 'carga: ' + formatted;
+          document.getElementById('t-ip' + suf).textContent = ipText;
+          document.getElementById('t-os' + suf).textContent = os;
+          document.getElementById('t-browser' + suf).textContent = browser;
+          document.getElementById('t-lang' + suf).textContent = langName;
+          document.getElementById('t-screen' + suf).textContent = screenRes;
+          document.getElementById('t-load' + suf).textContent = formatted;
         });
       }
       fillBanner(null);
