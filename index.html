@@ -171,19 +171,10 @@
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
-          <!-- Guy Fawkes / Anonymous mask -->
-          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
-            <!-- outline -->
-            <path d="M12 2.2c-4.4 0-7.8 3-7.8 7.2 0 2.1.7 3.8 1.7 5.1L5 21.5h14l-1-7c1-1.3 1.8-3 1.8-5.1 0-4.2-3.4-7.2-7.8-7.2z"/>
-            <!-- brows -->
-            <path d="M6.8 9c1.5-1.5 3.2-1.8 4.7-1M17.2 9c-1.5-1.5-3.2-1.8-4.7-1"/>
-            <!-- eyes -->
-            <path d="M7.5 12.2c1-1.4 2.5-1.7 3.8-.8"/>
-            <path d="M16.5 12.2c-1-1.4-2.5-1.7-3.8-.8"/>
-            <!-- mustache -->
-            <path d="M8.5 15.2c1.2.9 2.4 1.3 3.5 1.3s2.3-.4 3.5-1.3"/>
-            <!-- lower smile / goatee hint -->
-            <path d="M10 17.8c.7.5 1.3.7 2 .7s1.3-.2 2-.7"/>
+          <!-- candado -->
+          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="11" width="14" height="10" rx="2"/>
+            <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
           </svg>
         </div>
         <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
@@ -580,7 +571,6 @@
       function dataHtml(ip) {
         const ipText = ip || t('na');
         const parts = [];
-        // Formato: "Etiqueta: valor" con espacio tras los dos puntos
         const L = (k, v) =>
           '<span class="text-neon">' + t(k) + ':&nbsp;</span><span class="text-steel/90">' + v + '</span>';
         parts.push(L('lbl_ip', ipText));
