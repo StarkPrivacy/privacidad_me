@@ -171,9 +171,19 @@
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
-          <!-- Guy Fawkes mask -->
-          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="currentColor">
-            <path d="M12 2C7.6 2 4 5.2 4 9.5c0 1.8.5 3.4 1.4 4.7L4.5 21h15l-1-6.8c.9-1.3 1.5-2.9 1.5-4.7C20 5.2 16.4 2 12 2zm-3.2 7.2c.9-1.1 2.1-1.4 3.2-.9.8.4 1.2 1.3 1 2.1-.1.3-.3.5-.5.6-.7.4-1.6.2-2.1-.5-.3-.4-.4-.9-.2-1.3h-.1c-.4 0-.8.2-1 .6-.2.4-.1.9.2 1.2.5.5 1.3.6 1.9.3.1 0 .2-.1.3-.1.1.4 0 .8-.3 1.1-.6.6-1.6.6-2.2 0-.7-.7-.7-1.8 0-2.5.2-.2.4-.3.6-.4zm6.4 0c.2.1.4.2.6.4.7.7.7 1.8 0 2.5-.6.6-1.6.6-2.2 0-.3-.3-.4-.7-.3-1.1.1 0 .2.1.3.1.6.3 1.4.2 1.9-.3.3-.3.4-.8.2-1.2-.2-.4-.6-.6-1-.6h-.1c.2.4.1.9-.2 1.3-.5.7-1.4.9-2.1.5-.2-.1-.4-.3-.5-.6-.2-.8.2-1.7 1-2.1 1.1-.5 2.3-.2 3.2.9zM9.8 15.2c.7.5 1.5.8 2.2.8s1.5-.3 2.2-.8c.3-.2.7-.1.9.2.2.3.1.7-.2.9-1 .7-2.1 1.1-3.1 1.1s-2.1-.4-3.1-1.1c-.3-.2-.4-.6-.2-.9.2-.3.6-.4.9-.2z"/>
+          <!-- Guy Fawkes / Anonymous mask -->
+          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round">
+            <!-- outline -->
+            <path d="M12 2.2c-4.4 0-7.8 3-7.8 7.2 0 2.1.7 3.8 1.7 5.1L5 21.5h14l-1-7c1-1.3 1.8-3 1.8-5.1 0-4.2-3.4-7.2-7.8-7.2z"/>
+            <!-- brows -->
+            <path d="M6.8 9c1.5-1.5 3.2-1.8 4.7-1M17.2 9c-1.5-1.5-3.2-1.8-4.7-1"/>
+            <!-- eyes -->
+            <path d="M7.5 12.2c1-1.4 2.5-1.7 3.8-.8"/>
+            <path d="M16.5 12.2c-1-1.4-2.5-1.7-3.8-.8"/>
+            <!-- mustache -->
+            <path d="M8.5 15.2c1.2.9 2.4 1.3 3.5 1.3s2.3-.4 3.5-1.3"/>
+            <!-- lower smile / goatee hint -->
+            <path d="M10 17.8c.7.5 1.3.7 2 .7s1.3-.2 2-.7"/>
           </svg>
         </div>
         <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
@@ -481,7 +491,6 @@
         document.querySelectorAll('[data-i18n]').forEach(el => {
           const key = el.getAttribute('data-i18n');
           if (i18n[lang][key] !== undefined) {
-            // preserve SVG inside enter button
             if (key === 'enter') {
               const svg = el.querySelector('svg');
               el.textContent = t(key) + ' ';
@@ -503,7 +512,7 @@
       let os = '—';
       if (/Windows NT 10/.test(ua)) os = 'Windows 10/11';
       else if (/Windows/.test(ua)) os = 'Windows';
-      else if (/Mac OS X/.test(ua)) os = 'macOS';
+      else if (/Mac OS X/.test(ua)) os = 'MacOS';
       else if (/Android/.test(ua)) os = 'Android';
       else if (/iPhone|iPad|iPod/.test(ua)) os = 'iOS';
       else if (/Linux/.test(ua)) os = 'Linux';
@@ -571,7 +580,9 @@
       function dataHtml(ip) {
         const ipText = ip || t('na');
         const parts = [];
-        const L = (k, v) => '<span class="text-neon">' + t(k) + ':</span><span class="text-steel/90"> ' + v + '</span>';
+        // Formato: "Etiqueta: valor" con espacio tras los dos puntos
+        const L = (k, v) =>
+          '<span class="text-neon">' + t(k) + ':&nbsp;</span><span class="text-steel/90">' + v + '</span>';
         parts.push(L('lbl_ip', ipText));
         parts.push(L('lbl_os', os));
         parts.push(L('lbl_browser', browser));
@@ -618,7 +629,6 @@
         else if (tickerPhase === 'enter') startEnter(currentIp);
       }
 
-      // IP: esperar respuesta (máx 2.5s) antes de arrancar el banner
       function bootTicker(ip) {
         currentIp = ip;
         startEnter(ip);
@@ -633,7 +643,6 @@
 
       Promise.race([ipPromise, timeout]).then(ip => {
         bootTicker(ip);
-        // si el timeout ganó pero la IP llega después, actualizar
         if (!ip) {
           ipPromise.then(lateIp => {
             if (lateIp) {
@@ -644,7 +653,6 @@
         }
       });
 
-      // Language toggle
       document.getElementById('lang-toggle').addEventListener('click', () => {
         lang = lang === 'es' ? 'en' : 'es';
         applyI18n();
