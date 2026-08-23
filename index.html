@@ -113,7 +113,6 @@
       background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
       pointer-events: none;
     }
-    /* Ticker seamless: dos copias, -50%, entra por la derecha al cargar */
     .ticker-wrap {
       overflow: hidden;
       white-space: nowrap;
@@ -153,18 +152,10 @@
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
       <div class="flex items-center gap-3">
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
-          <!-- Guy Fawkes mask -->
-          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round">
-            <!-- face outline -->
-            <path d="M12 2.5c-4.2 0-7.5 2.8-7.5 6.8 0 2.2.6 3.8 1.6 5.2L5 21h14l-1.1-6.5c1-1.4 1.6-3 1.6-5.2 0-4-3.3-6.8-7.5-6.8z"/>
-            <!-- brows -->
-            <path d="M7.2 9.2c1.2-1.4 2.8-1.8 4.2-1.2M16.8 9.2c-1.2-1.4-2.8-1.8-4.2-1.2"/>
-            <!-- eyes -->
-            <path d="M8.2 11.8c.6-.9 1.6-1.2 2.5-.7.7.4 1 1.2.8 2M15.8 11.8c-.6-.9-1.6-1.2-2.5-.7-.7.4-1 1.2-.8 2"/>
-            <!-- mustache -->
-            <path d="M9.5 15.2c.8.6 1.6.9 2.5.9s1.7-.3 2.5-.9"/>
-            <!-- goatee / smile line -->
-            <path d="M10.2 17.2c.6.5 1.2.7 1.8.7s1.2-.2 1.8-.7"/>
+          <!-- icono simple: ojo / privacidad -->
+          <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M2 12s3.5-7 10-7 10 7 10 7-3.5 7-10 7-10-7-10-7z"/>
+            <circle cx="12" cy="12" r="3"/>
           </svg>
         </div>
         <span class="font-semibold text-white tracking-tight">privacidad<span class="text-neon">/me</span></span>
@@ -176,44 +167,38 @@
     </div>
   </header>
 
-  <!-- Banner huella -->
+  <!-- Banner -->
   <div class="relative z-10 ticker-wrap">
     <div class="ticker-track text-[11px] py-1.5" id="ticker-content">
-      <!-- copia 1 -->
       <div class="ticker-item">
-        <span class="text-neon">huella</span>
-        <span class="text-dim mx-2">·</span>
-        <span class="text-neon">IP</span><span class="text-steel/90"> <span id="t-ip">…</span></span>
+        <span class="text-steel/70">tranquilo, no se guarda</span>
+        <span class="text-dim mx-3">·</span>
+        <span class="text-neon">IP:</span><span class="text-steel/90"> <span id="t-ip">…</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">sistema</span><span class="text-steel/90"> <span id="t-os">—</span></span>
+        <span class="text-neon">sistema:</span><span class="text-steel/90"> <span id="t-os">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">navegador</span><span class="text-steel/90"> <span id="t-browser">—</span></span>
+        <span class="text-neon">navegador:</span><span class="text-steel/90"> <span id="t-browser">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">idioma</span><span class="text-steel/90"> <span id="t-lang">—</span></span>
+        <span class="text-neon">idioma:</span><span class="text-steel/90"> <span id="t-lang">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">pantalla</span><span class="text-steel/90"> <span id="t-screen">—</span></span>
+        <span class="text-neon">pantalla:</span><span class="text-steel/90"> <span id="t-screen">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">carga</span><span class="text-steel/90"> <span id="t-load">—</span></span>
-        <span class="text-dim mx-4">·</span>
-        <span class="text-steel/60">no se guarda, solo se muestra aquí</span>
+        <span class="text-neon">carga:</span><span class="text-steel/90"> <span id="t-load">—</span></span>
       </div>
-      <!-- copia 2 (loop seamless) -->
       <div class="ticker-item">
-        <span class="text-neon">huella</span>
-        <span class="text-dim mx-2">·</span>
-        <span class="text-neon">IP</span><span class="text-steel/90"> <span id="t-ip2">…</span></span>
+        <span class="text-steel/70">tranquilo, no se guarda</span>
+        <span class="text-dim mx-3">·</span>
+        <span class="text-neon">IP:</span><span class="text-steel/90"> <span id="t-ip2">…</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">sistema</span><span class="text-steel/90"> <span id="t-os2">—</span></span>
+        <span class="text-neon">sistema:</span><span class="text-steel/90"> <span id="t-os2">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">navegador</span><span class="text-steel/90"> <span id="t-browser2">—</span></span>
+        <span class="text-neon">navegador:</span><span class="text-steel/90"> <span id="t-browser2">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">idioma</span><span class="text-steel/90"> <span id="t-lang2">—</span></span>
+        <span class="text-neon">idioma:</span><span class="text-steel/90"> <span id="t-lang2">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">pantalla</span><span class="text-steel/90"> <span id="t-screen2">—</span></span>
+        <span class="text-neon">pantalla:</span><span class="text-steel/90"> <span id="t-screen2">—</span></span>
         <span class="text-dim mx-3">|</span>
-        <span class="text-neon">carga</span><span class="text-steel/90"> <span id="t-load2">—</span></span>
-        <span class="text-dim mx-4">·</span>
-        <span class="text-steel/60">no se guarda, solo se muestra aquí</span>
+        <span class="text-neon">carga:</span><span class="text-steel/90"> <span id="t-load2">—</span></span>
       </div>
     </div>
   </div>
@@ -227,7 +212,7 @@
 
         <!-- hero centrado -->
         <div class="text-center mb-12 sm:mb-14">
-          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">// hub · sin telemetría</p>
+          <p class="text-[11px] font-mono text-neon/80 mb-4 tracking-wide">sin cookies · sin telemetría</p>
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-white leading-[1.05] mb-4 glitch-title">
             privacidad<span class="text-neon text-glow">/me</span>
           </h1>
@@ -358,7 +343,7 @@
 
         <!-- canales -->
         <div class="mb-10 text-center">
-          <h3 class="text-xs font-mono text-steel mb-4">dónde encontrarme</h3>
+          <h3 class="text-xs font-mono text-steel mb-4">por aquí divulgo</h3>
           <div class="flex flex-wrap justify-center gap-3">
             <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener"
                class="inline-flex items-center gap-2 px-4 py-2.5 rounded-lg bg-panel border border-white/8 hover:border-neon/40 transition text-sm text-steel hover:text-white hover-sound">
@@ -393,7 +378,7 @@
           </p>
         </div>
 
-        <!-- donaciones (estilo distinto) -->
+        <!-- donaciones -->
         <div class="mb-12 max-w-2xl mx-auto">
           <div class="donation-box rounded-2xl p-6 text-center">
             <h3 class="text-xs font-mono text-neon mb-3 tracking-wider">apoyar</h3>
