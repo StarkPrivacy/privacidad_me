@@ -20,12 +20,17 @@
     .text-glow{text-shadow:0 0 20px rgba(10,132,255,.55)}
     .glitch-title{position:relative;display:inline-block;animation:glitch-skew 2.4s infinite linear alternate-reverse}
     .glitch-title::before,.glitch-title::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none}
-    .glitch-title::before{color:#0a84ff;text-shadow:-3px 0 #ff2a6d;animation:glitch-a 2.1s infinite linear alternate-reverse;clip-path:inset(0 0 58% 0)}
-    .glitch-title::after{color:#3b9eff;text-shadow:3px 0 #00f0ff;animation:glitch-b 1.7s infinite linear alternate-reverse;clip-path:inset(42% 0 0 0)}
+    .glitch-title::before{color:#fff;text-shadow:-3px 0 #ff2a6d;animation:glitch-a 2.1s infinite linear alternate-reverse;clip-path:inset(0 0 58% 0)}
+    .glitch-title::after{color:#fff;text-shadow:3px 0 #0a84ff;animation:glitch-b 1.7s infinite linear alternate-reverse;clip-path:inset(42% 0 0 0)}
     @keyframes glitch-skew{0%,82%,100%{transform:none;filter:none}84%{transform:skewX(-8deg) translate(-4px,1px);filter:contrast(1.4)}86%{transform:skewX(6deg) translate(5px,-2px)}88%{transform:none}91%{transform:skewX(-12deg) translate(-7px,0);filter:hue-rotate(20deg)}93%{transform:skewX(10deg) translate(6px,2px)}95%{transform:none}}
     @keyframes glitch-a{0%,78%,100%{transform:translate(0);opacity:.85}80%{transform:translate(-6px,2px)}83%{transform:translate(7px,-3px)}86%{transform:translate(-9px,0)}90%{transform:translate(4px,3px)}}
     @keyframes glitch-b{0%,74%,100%{transform:translate(0);opacity:.7}76%{transform:translate(6px,-2px)}80%{transform:translate(-5px,4px)}85%{transform:translate(8px,1px)}89%{transform:translate(-4px,-3px)}}
-    .module-card{transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
+    .nodes-wrap{position:relative;padding:1.15rem 1rem 1.1rem;margin-bottom:2.5rem;border:1px solid rgba(10,132,255,.32);background:linear-gradient(180deg,rgba(10,132,255,.07),rgba(11,15,20,.35));box-shadow:inset 0 0 40px rgba(10,132,255,.04),0 0 28px rgba(10,132,255,.06)}
+    .nodes-wrap::before,.nodes-wrap::after{content:'';position:absolute;width:14px;height:14px;border-color:#0a84ff;border-style:solid}
+    .nodes-wrap::before{top:-1px;left:-1px;border-width:2px 0 0 2px}
+    .nodes-wrap::after{bottom:-1px;right:-1px;border-width:0 2px 2px 0}
+    .nodes-label{position:absolute;top:-9px;left:16px;padding:0 8px;background:#05070a;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:10px;letter-spacing:.16em;color:#0a84ff}
+    .module-card{background:#070b10;transition:border-color .2s,box-shadow .2s,transform .2s,background .2s}
     .module-card:not(.locked):hover{border-color:rgba(10,132,255,.55);box-shadow:0 0 32px rgba(10,132,255,.2);transform:translateY(-3px);background:#0d1219}
     .module-card.locked{opacity:.72;cursor:not-allowed;pointer-events:none}
     .redacted{position:relative;display:inline-block;color:transparent!important;background:#0a0a0a;box-shadow:0 0 0 3px #0a0a0a;user-select:none}
@@ -80,18 +85,21 @@
           <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 glitch-title" data-text="privacidad/me">privacidad<span class="text-neon text-glow">/me</span></h1>
           <p class="text-steel text-base sm:text-lg max-w-lg mx-auto" data-i18n="hero">Aquí se van juntando las piezas. De momento la mayoría está cerrado; se irán abriendo cuando estén listas.</p>
         </div>
-        <a href="https://boringprivacy.io" target="_blank" rel="noopener" class="module-card group block mb-5 p-5 sm:p-6 rounded-2xl bg-panel border border-neon/25 hover-sound">
+        <div class="nodes-wrap rounded-2xl">
+          <span class="nodes-label">nodos</span>
+        <a href="https://boringprivacy.io" target="_blank" rel="noopener" class="module-card group block mb-4 p-5 sm:p-6 rounded-2xl bg-panel border border-neon/25 hover-sound">
           <div class="flex flex-col sm:flex-row sm:items-center gap-4">
             <div class="flex items-center gap-4"><div class="w-11 h-11 rounded-xl bg-neon/15 border border-neon/40 flex items-center justify-center"><svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><span class="text-[10px] font-mono text-neon">01</span></div>
             <div class="flex-1"><h2 class="text-lg font-semibold text-white">boringprivacy.io</h2><p class="text-sm text-steel" data-i18n="node01">La academia. Privacidad real, sin humo.</p></div>
             <span class="text-xs font-mono text-neon" data-i18n="enter">entrar</span>
           </div>
         </a>
-        <div class="grid sm:grid-cols-2 gap-4 mb-10">
+        <div class="grid sm:grid-cols-2 gap-4">
           <div class="module-card locked p-6 rounded-2xl bg-panel border border-white/10"><div class="flex justify-between mb-4"><div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30"></div><span class="text-[10px] font-mono text-neon/70">02</span></div><h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privtr.ee</span></h2><p class="text-sm text-steel mb-4"><span class="redacted" data-i18n="node02">Identidad digital y enlaces.</span></p><span class="text-xs font-mono text-steel/80" data-i18n="closed">cerrado</span></div>
           <div class="module-card locked p-6 rounded-2xl bg-panel border border-white/10"><div class="flex justify-between mb-4"><div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30"></div><span class="text-[10px] font-mono text-neon/70">03</span></div><h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privacidad / tools</span></h2><p class="text-sm text-steel mb-4"><span class="redacted" data-i18n="node03">Utilidades en el navegador. Todo local.</span></p><span class="text-xs font-mono text-steel/80" data-i18n="closed">cerrado</span></div>
           <div class="module-card locked p-6 rounded-2xl bg-panel border border-white/10"><div class="flex justify-between mb-4"><div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30"></div><span class="text-[10px] font-mono text-neon/70">04</span></div><h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privacidad / news</span></h2><p class="text-sm text-steel mb-4"><span class="redacted" data-i18n="node04">Noticias de privacidad y soberanía digital.</span></p><span class="text-xs font-mono text-steel/80" data-i18n="closed">cerrado</span></div>
           <div class="module-card locked p-6 rounded-2xl bg-panel border border-white/10"><div class="flex justify-between mb-4"><div class="w-10 h-10 rounded-xl bg-neon/10 border border-neon/30"></div><span class="text-[10px] font-mono text-neon/70">05</span></div><h2 class="text-lg font-semibold text-white mb-1"><span class="redacted">privacidad / app</span></h2><p class="text-sm text-steel mb-4"><span class="redacted" data-i18n="node05">Lista de apps orientadas a la privacidad.</span></p><span class="text-xs font-mono text-steel/80" data-i18n="closed">cerrado</span></div>
+        </div>
         </div>
         <div class="rounded-2xl bg-panel border border-white/10 p-5 sm:p-6 mb-8">
           <div class="flex items-center justify-between mb-4"><div class="flex items-center gap-2"><span class="w-2 h-2 rounded-full bg-neon status-dot"></span><span class="text-xs font-mono text-neon">terminal</span></div><span class="text-[10px] font-mono text-dim">live</span></div>
@@ -99,13 +107,10 @@
           <form id="term-form" class="hidden mt-3 flex items-center gap-2"><span class="text-neon/80 font-mono text-[13px]">></span><input id="term-cmd" class="term-cmd" type="text" autocomplete="off" spellcheck="false" maxlength="80"></form>
         </div>
         <div class="grid sm:grid-cols-2 gap-4 mb-8">
-          <div class="rounded-2xl bg-panel border border-white/10 p-5 text-center flex flex-col">
-            <div class="w-11 h-11 mx-auto mb-3 rounded-xl bg-neon/15 border border-neon/35 flex items-center justify-center">
-              <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-            </div>
+          <div class="rounded-2xl bg-panel border border-white/10 p-5 text-left">
             <h3 class="text-xs font-mono text-neon/70 mb-2 tracking-wider" data-i18n="news_title">Avisos</h3>
-            <p class="text-sm text-steel mb-4 flex-1" data-i18n="news_text">Cualquier novedad de esta web y de sus nodos se avisa aquí.</p>
-            <a href="https://t.me/privacidad_me" target="_blank" rel="noopener" class="social-btn hover-sound inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-neon/25 text-sm text-mist hover:text-white mx-auto">
+            <p class="text-sm text-steel mb-4" data-i18n="news_text">Cualquier novedad de esta web y de sus nodos se avisa aquí.</p>
+            <a href="https://t.me/privacidad_me" target="_blank" rel="noopener" class="social-btn hover-sound inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl border border-neon/25 text-sm text-mist hover:text-white">
               <svg class="w-4 h-4 text-neon" viewBox="0 0 24 24" fill="currentColor"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 12 0a12 12 0 0 0-.056 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
               <span data-i18n="news_btn">Telegram · @privacidad_me</span>
             </a>
@@ -144,10 +149,11 @@
         <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">YouTube</a>
         <a href="https://www.instagram.com/starkprivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Instagram</a>
         <a href="https://boringprivacy.io" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Discord</a>
-        <button type="button" id="privacy-btn" class="hover:text-neon hover-sound" data-i18n="privacy">Política de privacidad</button>
       </div>
     </div>
-    <p id="privacy-text" class="hidden max-w-5xl mx-auto px-5 mt-3 text-center text-[11px] text-dim" data-i18n="privacy_txt">Esta web no recopila información de sus usuarios. Fin.</p>
+    <div class="max-w-5xl mx-auto px-5 mt-3 text-center">
+      <a href="privacy.html" target="_blank" rel="noopener" class="text-[11px] text-dim hover:text-neon hover-sound" data-i18n="privacy">Política de privacidad</a>
+    </div>
   </footer>
   <script>
   (function(){
@@ -186,9 +192,7 @@
     window.onMailCaptcha=function(){if(err)err.classList.add('hidden');if(form&&form.checkValidity())form.submit()};
     if(form)form.addEventListener('submit',function(e){let token='';try{token=(typeof hcaptcha!=='undefined'&&hcaptcha.getResponse())||''}catch(ex){}if(!token){e.preventDefault();if(wrap)wrap.classList.remove('hidden')}else if(err)err.classList.add('hidden')});
     let audioCtx;function playHoverSound(){try{if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.type='square';o.frequency.setValueAtTime(880,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(440,audioCtx.currentTime+.04);g.gain.setValueAtTime(.035,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.055);o.start();o.stop(audioCtx.currentTime+.06)}catch(e){}}
-    document.querySelectorAll('a,.hover-sound,#lang-toggle,#privacy-btn').forEach(el=>el.addEventListener('mouseenter',playHoverSound));
-    const privacyBtn=document.getElementById('privacy-btn'),privacyTxt=document.getElementById('privacy-text');
-    if(privacyBtn&&privacyTxt)privacyBtn.addEventListener('click',()=>privacyTxt.classList.toggle('hidden'));
+    document.querySelectorAll('a,.hover-sound,#lang-toggle').forEach(el=>el.addEventListener('mouseenter',playHoverSound));
   })();
   </script>
   <script src="https://js.hcaptcha.com/1/api.js" async defer></script>
