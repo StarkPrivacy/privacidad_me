@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Política de privacidad · privacidad / me</title>
+  <meta name="theme-color" content="#05070a">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>tailwind.config={theme:{extend:{colors:{void:'#05070a',panel:'#0b0f14',neon:'#0a84ff',steel:'#8b9bb4',mist:'#c5d0e0',dim:'#4a5568'},fontFamily:{sans:['Inter','system-ui','sans-serif'],mono:['ui-monospace','Menlo','Consolas','monospace']}}}}</script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+  <style>
+    body{background:#05070a}
+    .scanlines{background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.18) 1px,rgba(0,0,0,.18) 3px);pointer-events:none}
+    .vignette{background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.55) 100%);pointer-events:none}
+  </style>
+</head>
+<body class="font-sans text-mist min-h-screen flex flex-col">
+  <div class="fixed inset-0 scanlines opacity-50 pointer-events-none"></div>
+  <div class="fixed inset-0 vignette pointer-events-none"></div>
+  <main class="relative z-10 flex-1 flex items-center justify-center px-5">
+    <div class="text-center max-w-md">
+      <p class="font-mono text-neon text-xs tracking-wider mb-4">política de privacidad</p>
+      <p class="text-lg sm:text-xl text-white leading-relaxed">Esta web no recopila información de sus usuarios. Fin.</p>
+    </div>
+  </main>
+</body>
+</html>
