@@ -73,16 +73,16 @@
   </div>
   <header class="relative z-10 border-b border-white/5 bg-void/90">
     <div class="max-w-5xl mx-auto px-5 h-14 flex items-center justify-between">
-      <div class="flex items-center gap-3">
+      <a href="./" class="flex items-center gap-3 hover-sound" title="privacidad/me">
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
           <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
         </div>
         <span class="font-semibold text-white">privacidad<span class="slash-me">/me</span></span>
-      </div>
+      </a>
       <div class="flex items-center gap-3 text-xs font-mono">
         <button type="button" id="lang-toggle" class="lang-btn px-2 py-1 rounded border border-white/10 text-steel text-[10px] hover-sound">EN</button>
-        <span class="w-1.5 h-1.5 rounded-full bg-neon status-dot"></span>
-        <span class="text-neon">online</span>
+        <span id="net-dot" class="w-1.5 h-1.5 rounded-full bg-neon status-dot"></span>
+        <span id="net-label" class="text-neon">online</span>
       </div>
     </div>
   </header>
@@ -205,6 +205,10 @@
     window.onMailCaptcha=function(){if(err)err.classList.add('hidden');if(form&&form.checkValidity())form.submit()};
     if(form)form.addEventListener('submit',function(e){let token='';try{token=(typeof hcaptcha!=='undefined'&&hcaptcha.getResponse())||''}catch(ex){}if(!token){e.preventDefault();if(wrap)wrap.classList.remove('hidden')}else if(err)err.classList.add('hidden')});
     let audioCtx;function playHoverSound(){try{if(!audioCtx)audioCtx=new (window.AudioContext||window.webkitAudioContext)();const o=audioCtx.createOscillator(),g=audioCtx.createGain();o.connect(g);g.connect(audioCtx.destination);o.type='square';o.frequency.setValueAtTime(880,audioCtx.currentTime);o.frequency.exponentialRampToValueAtTime(440,audioCtx.currentTime+.04);g.gain.setValueAtTime(.035,audioCtx.currentTime);g.gain.exponentialRampToValueAtTime(.001,audioCtx.currentTime+.055);o.start();o.stop(audioCtx.currentTime+.06)}catch(e){}}
+    function setNet(on){const dot=document.getElementById('net-dot'),lab=document.getElementById('net-label');if(!dot||!lab)return;lab.textContent=on?'online':'offline';dot.classList.toggle('bg-neon',on);dot.classList.toggle('status-dot',on);dot.classList.toggle('bg-steel',!on);lab.classList.toggle('text-neon',on);lab.classList.toggle('text-steel',!on)}
+    setNet(navigator.onLine!==false);
+    window.addEventListener('online',function(){setNet(true)});
+    window.addEventListener('offline',function(){setNet(false)});
     document.querySelectorAll('a,.hover-sound,#lang-toggle,#migrate-close').forEach(el=>el.addEventListener('mouseenter',playHoverSound));
     const note=document.getElementById('migrate-note'),noteBtn=document.getElementById('migrate-close');
     try{if(sessionStorage.getItem('hide-migrate')==='1'&&note)note.remove()}catch(e){}
