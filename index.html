@@ -17,7 +17,7 @@
     .scanlines{background:repeating-linear-gradient(0deg,transparent,transparent 1px,rgba(0,0,0,.18) 1px,rgba(0,0,0,.18) 3px);pointer-events:none}
     .vignette{background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.55) 100%);pointer-events:none}
     .glow-blue{box-shadow:0 0 24px rgba(10,132,255,.25),0 0 60px rgba(10,132,255,.1)}
-    .text-glow{text-shadow:0 0 20px rgba(10,132,255,.55)}
+    .slash-me{color:#0a84ff;text-shadow:0 0 14px rgba(10,132,255,.4)}
     .glitch-title{position:relative;display:inline-block;animation:glitch-skew 2.4s infinite linear alternate-reverse}
     .glitch-title::before,.glitch-title::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none}
     .glitch-title::before{color:#fff;text-shadow:-3px 0 #ff2a6d;animation:glitch-a 2.1s infinite linear alternate-reverse;clip-path:inset(0 0 58% 0)}
@@ -66,7 +66,7 @@
         <div class="w-8 h-8 rounded-lg bg-neon/10 border border-neon/40 flex items-center justify-center glow-blue">
           <svg class="w-5 h-5 text-neon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="5" y="11" width="14" height="10" rx="2"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
         </div>
-        <span class="font-semibold text-white">privacidad<span class="text-neon">/me</span></span>
+        <span class="font-semibold text-white">privacidad<span class="slash-me">/me</span></span>
       </div>
       <div class="flex items-center gap-3 text-xs font-mono">
         <button type="button" id="lang-toggle" class="lang-btn px-2 py-1 rounded border border-white/10 text-steel text-[10px] hover-sound">EN</button>
@@ -82,7 +82,7 @@
       <div class="max-w-5xl mx-auto px-5 w-full">
         <div class="text-center mb-12">
           <p class="text-[11px] font-mono text-neon/80 mb-4" data-i18n="badge">Sin telemetría · Con privacidad</p>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold text-white mb-4 glitch-title" data-text="privacidad/me">privacidad<span class="text-neon text-glow">/me</span></h1>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4"><span class="glitch-title text-white" data-text="privacidad">privacidad</span><span class="slash-me">/me</span></h1>
           <p class="text-steel text-base sm:text-lg max-w-lg mx-auto" data-i18n="hero">Aquí se van juntando las piezas. De momento la mayoría está cerrado; se irán abriendo cuando estén listas.</p>
         </div>
         <div class="nodes-wrap rounded-2xl">
@@ -149,10 +149,8 @@
         <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">YouTube</a>
         <a href="https://www.instagram.com/starkprivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Instagram</a>
         <a href="https://boringprivacy.io" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Discord</a>
+        <a href="privacy.html" target="_blank" rel="noopener" class="hover:text-neon hover-sound" data-i18n="privacy">Política de privacidad</a>
       </div>
-    </div>
-    <div class="max-w-5xl mx-auto px-5 mt-3 text-center">
-      <a href="privacy.html" target="_blank" rel="noopener" class="text-[11px] text-dim hover:text-neon hover-sound" data-i18n="privacy">Política de privacidad</a>
     </div>
   </footer>
   <script>
