@@ -164,13 +164,15 @@
         <div class="mb-10 max-w-md mx-auto text-center">
           <div class="rounded-2xl bg-panel border border-white/10 p-5 sm:p-6">
             <h3 class="text-xs font-mono text-neon/70 mb-2 tracking-wider" data-i18n="mail_label">Lista de correo</h3>
-            <p class="text-sm text-steel mb-4" data-i18n="mail_lead">Si te va mejor el buzón que el chat.</p>
+            <p class="text-sm text-steel mb-4" data-i18n="mail_lead">Si estás aquí, te gustará.</p>
             <form id="newsletter-form" method="post" target="_blank" action="https://newsletter.boringprivacy.io/subscription/form">
               <div class="flex flex-col sm:flex-row gap-2 mb-3">
                 <input class="mail-input hover-sound flex-1 px-3 py-2.5 rounded-xl text-sm" type="email" name="email" required autocomplete="email" data-i18n-placeholder="mail_ph" placeholder="alias@protonmail.com">
                 <button type="submit" class="social-btn hover-sound px-4 py-2.5 rounded-xl bg-panel border border-white/10 text-sm text-steel hover:text-white" data-i18n="mail_btn">Apuntarme</button>
               </div>
-              <div class="flex justify-center mb-3"><div class="h-captcha" data-sitekey="7beaf856-25f0-43a4-b09a-8c26bfaed3fe"></div></div>
+              <div id="captcha-wrap" class="hidden flex justify-center mb-3">
+                <div class="h-captcha" data-sitekey="7beaf856-25f0-43a4-b09a-8c26bfaed3fe" data-theme="dark" data-callback="onMailCaptcha"></div>
+              </div>
               <p id="captcha-error" class="hidden text-[11px] text-amber mb-2" data-i18n="mail_captcha">Completa el captcha para continuar.</p>
               <input type="hidden" name="nonce">
               <input type="hidden" name="l" value="9a838c12-bfab-4de3-a771-6bbd876ade77">
@@ -214,8 +216,8 @@
     (function () {
       let lang = 'es'; let currentIp = null; let tickerPhase = 'idle';
       const i18n = {
-        es: { badge:'Sin telemetría · Con privacidad', hero:'Aquí se van juntando las piezas. De momento la mayoría está cerrado; se irán abriendo cuando estén listas.', node01:'La academia. Privacidad real, sin humo.', enter:'entrar', node02:'Identidad digital y enlaces.', node03:'Utilidades en el navegador. Todo local.', node04:'Noticias de privacidad y soberanía digital.', node05:'Lista de apps orientadas a la privacidad.', closed:'cerrado', t_state:'estado', t_dev:'en desarrollo', t_nodes:'nodos abiertos', t_cookies:'cookies de rastreo', t_none:'ninguna', t_access:'momento de acceso', news_title:'Avisos', news_text:'Cualquier novedad de esta web y de sus nodos se avisa aquí.', news_btn:'Telegram · @privacidad_me', mail_label:'Lista de correo', mail_lead:'Si te va mejor el buzón que el chat.', mail_btn:'Apuntarme', mail_ph:'alias@protonmail.com', mail_hint:'Autogestionado. Sin espionaje. Envío ocasional. Sin bullshit.', mail_captcha:'Completa el captcha para continuar.', note1:'No vendo tus datos ni me lucro de ellos. Aquí se respeta tu privacidad y nos proponemos hacerla más sencilla y accesible para todo el mundo.', note2:'Si crees que no tienes que protegerte, es tu elección. Si quieres hacerlo, recuerda: el conocimiento y el pragmatismo serán tus mejores aliados, no el miedo ni el alarmismo.', support:'Apoya el proyecto', donate:'Si quieres apoyar e impulsar la divulgación independiente de privacidad real, puedes hacerlo con Bitcoin y Monero.', soon:'próximamente', quote:'Sin privacidad tu libertad es solo una ilusión', intro:'Tranquilo — esto no se guarda ni se envía', lbl_ip:'IP', lbl_os:'Sistema', lbl_browser:'Navegador', lbl_lang:'Idioma', lbl_screen:'Pantalla', lbl_zone:'Zona', lbl_cpu:'CPU', lbl_mem:'Memoria', lbl_net:'Red', lbl_access:'Momento de acceso', na:'no disponible', cores:'núcleos', gb:'GB' },
-        en: { badge:'No telemetry · With privacy', hero:'The pieces are coming together. Most of it is closed for now; they will open when ready.', node01:'The academy. Real privacy, no fluff.', enter:'enter', node02:'Digital identity and links.', node03:'Browser utilities. All local.', node04:'Privacy and digital sovereignty news.', node05:'Privacy-focused apps list.', closed:'closed', t_state:'status', t_dev:'in development', t_nodes:'open nodes', t_cookies:'tracking cookies', t_none:'none', t_access:'access time', news_title:'Updates', news_text:'Anything new about this site and its nodes is posted here.', news_btn:'Telegram · @privacidad_me', mail_label:'Mailing list', mail_lead:'If email suits you better than chat.', mail_btn:'Subscribe', mail_ph:'alias@protonmail.com', mail_hint:'Self-hosted. No snooping. Occasional send. No bullshit.', mail_captcha:'Complete the captcha to continue.', note1:'I do not sell your data or profit from it. Privacy is respected here, and we aim to make it simpler and more accessible for everyone.', note2:'If you think you do not need to protect yourself, that is your choice. If you do, remember: knowledge and pragmatism are your best allies — not fear or alarmism.', support:'Support the project', donate:'If you want to support independent real-privacy outreach, you can do so with Bitcoin and Monero.', soon:'coming soon', quote:'Without privacy your freedom is only an illusion', intro:'Relax — nothing is stored or sent', lbl_ip:'IP', lbl_os:'System', lbl_browser:'Browser', lbl_lang:'Language', lbl_screen:'Screen', lbl_zone:'Zone', lbl_cpu:'CPU', lbl_mem:'Memory', lbl_net:'Network', lbl_access:'Access time', na:'unavailable', cores:'cores', gb:'GB' }
+        es: { badge:'Sin telemetría · Con privacidad', hero:'Aquí se van juntando las piezas. De momento la mayoría está cerrado; se irán abriendo cuando estén listas.', node01:'La academia. Privacidad real, sin humo.', enter:'entrar', node02:'Identidad digital y enlaces.', node03:'Utilidades en el navegador. Todo local.', node04:'Noticias de privacidad y soberanía digital.', node05:'Lista de apps orientadas a la privacidad.', closed:'cerrado', t_state:'estado', t_dev:'en desarrollo', t_nodes:'nodos abiertos', t_cookies:'cookies de rastreo', t_none:'ninguna', t_access:'momento de acceso', news_title:'Avisos', news_text:'Cualquier novedad de esta web y de sus nodos se avisa aquí.', news_btn:'Telegram · @privacidad_me', mail_label:'Lista de correo', mail_lead:'Si estás aquí, te gustará.', mail_btn:'Apuntarme', mail_ph:'alias@protonmail.com', mail_hint:'Autogestionado. Sin espionaje. Envío ocasional. Sin bullshit.', mail_captcha:'Completa el captcha para continuar.', note1:'No vendo tus datos ni me lucro de ellos. Aquí se respeta tu privacidad y nos proponemos hacerla más sencilla y accesible para todo el mundo.', note2:'Si crees que no tienes que protegerte, es tu elección. Si quieres hacerlo, recuerda: el conocimiento y el pragmatismo serán tus mejores aliados, no el miedo ni el alarmismo.', support:'Apoya el proyecto', donate:'Si quieres apoyar e impulsar la divulgación independiente de privacidad real, puedes hacerlo con Bitcoin y Monero.', soon:'próximamente', quote:'Sin privacidad tu libertad es solo una ilusión', intro:'Tranquilo — esto no se guarda ni se envía', lbl_ip:'IP', lbl_os:'Sistema', lbl_browser:'Navegador', lbl_lang:'Idioma', lbl_screen:'Pantalla', lbl_zone:'Zona', lbl_cpu:'CPU', lbl_mem:'Memoria', lbl_net:'Red', lbl_access:'Momento de acceso', na:'no disponible', cores:'núcleos', gb:'GB' },
+        en: { badge:'No telemetry · With privacy', hero:'The pieces are coming together. Most of it is closed for now; they will open when ready.', node01:'The academy. Real privacy, no fluff.', enter:'enter', node02:'Digital identity and links.', node03:'Browser utilities. All local.', node04:'Privacy and digital sovereignty news.', node05:'Privacy-focused apps list.', closed:'closed', t_state:'status', t_dev:'in development', t_nodes:'open nodes', t_cookies:'tracking cookies', t_none:'none', t_access:'access time', news_title:'Updates', news_text:'Anything new about this site and its nodes is posted here.', news_btn:'Telegram · @privacidad_me', mail_label:'Mailing list', mail_lead:'If you are here, you will like it.', mail_btn:'Subscribe', mail_ph:'alias@protonmail.com', mail_hint:'Self-hosted. No snooping. Occasional send. No bullshit.', mail_captcha:'Complete the captcha to continue.', note1:'I do not sell your data or profit from it. Privacy is respected here, and we aim to make it simpler and more accessible for everyone.', note2:'If you think you do not need to protect yourself, that is your choice. If you do, remember: knowledge and pragmatism are your best allies — not fear or alarmism.', support:'Support the project', donate:'If you want to support independent real-privacy outreach, you can do so with Bitcoin and Monero.', soon:'coming soon', quote:'Without privacy your freedom is only an illusion', intro:'Relax — nothing is stored or sent', lbl_ip:'IP', lbl_os:'System', lbl_browser:'Browser', lbl_lang:'Language', lbl_screen:'Screen', lbl_zone:'Zone', lbl_cpu:'CPU', lbl_mem:'Memory', lbl_net:'Network', lbl_access:'Access time', na:'unavailable', cores:'cores', gb:'GB' }
       };
       function t(key) { return i18n[lang][key] || key; }
       function applyI18n() {
@@ -303,12 +305,19 @@
       }
       document.querySelectorAll('a, .hover-sound, #lang-toggle').forEach(el => el.addEventListener('mouseenter', playHoverSound));
       const form = document.getElementById('newsletter-form');
+      const wrap = document.getElementById('captcha-wrap');
+      const err = document.getElementById('captcha-error');
+      window.onMailCaptcha = function () {
+        if (err) err.classList.add('hidden');
+        if (form && form.checkValidity()) form.submit();
+      };
       if (form) form.addEventListener('submit', function (e) {
-        const err = document.getElementById('captcha-error');
-        try {
-          if (typeof hcaptcha === 'undefined' || !hcaptcha.getResponse()) { e.preventDefault(); if (err) err.classList.remove('hidden'); }
-          else if (err) err.classList.add('hidden');
-        } catch (ex) { e.preventDefault(); if (err) err.classList.remove('hidden'); }
+        let token = '';
+        try { token = (typeof hcaptcha !== 'undefined' && hcaptcha.getResponse()) || ''; } catch (ex) {}
+        if (!token) {
+          e.preventDefault();
+          if (wrap) wrap.classList.remove('hidden');
+        } else if (err) err.classList.add('hidden');
       });
     })();
   </script>
