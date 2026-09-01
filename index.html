@@ -18,10 +18,10 @@
     .vignette{background:radial-gradient(ellipse at center,transparent 40%,rgba(0,0,0,.55) 100%);pointer-events:none}
     .glow-blue{box-shadow:0 0 24px rgba(10,132,255,.25),0 0 60px rgba(10,132,255,.1)}
     .slash-me{color:#0a84ff;text-shadow:0 0 14px rgba(10,132,255,.4)}
-    .glitch-title{position:relative;display:inline-block;animation:glitch-skew 2.4s infinite linear alternate-reverse}
-    .glitch-title::before,.glitch-title::after{content:attr(data-text);position:absolute;left:0;top:0;width:100%;overflow:hidden;pointer-events:none}
-    .glitch-title::before{color:#fff;text-shadow:-3px 0 #ff2a6d;animation:glitch-a 2.1s infinite linear alternate-reverse;clip-path:inset(0 0 58% 0)}
-    .glitch-title::after{color:#fff;text-shadow:3px 0 #0a84ff;animation:glitch-b 1.7s infinite linear alternate-reverse;clip-path:inset(42% 0 0 0)}
+    .glitch-block{position:relative;display:inline-block;animation:glitch-skew 2.4s infinite linear alternate-reverse}
+    .glitch-block .ghost{position:absolute;left:0;top:0;white-space:nowrap;pointer-events:none}
+    .glitch-block .ghost-a{animation:glitch-a 2.1s infinite linear alternate-reverse;clip-path:inset(0 0 58% 0);filter:drop-shadow(-3px 0 #ff2a6d)}
+    .glitch-block .ghost-b{animation:glitch-b 1.7s infinite linear alternate-reverse;clip-path:inset(42% 0 0 0);filter:drop-shadow(3px 0 #0a84ff)}
     @keyframes glitch-skew{0%,82%,100%{transform:none;filter:none}84%{transform:skewX(-8deg) translate(-4px,1px);filter:contrast(1.4)}86%{transform:skewX(6deg) translate(5px,-2px)}88%{transform:none}91%{transform:skewX(-12deg) translate(-7px,0);filter:hue-rotate(20deg)}93%{transform:skewX(10deg) translate(6px,2px)}95%{transform:none}}
     @keyframes glitch-a{0%,78%,100%{transform:translate(0);opacity:.85}80%{transform:translate(-6px,2px)}83%{transform:translate(7px,-3px)}86%{transform:translate(-9px,0)}90%{transform:translate(4px,3px)}}
     @keyframes glitch-b{0%,74%,100%{transform:translate(0);opacity:.7}76%{transform:translate(6px,-2px)}80%{transform:translate(-5px,4px)}85%{transform:translate(8px,1px)}89%{transform:translate(-4px,-3px)}}
@@ -82,7 +82,7 @@
       <div class="max-w-5xl mx-auto px-5 w-full">
         <div class="text-center mb-12">
           <p class="text-[11px] font-mono text-neon/80 mb-4" data-i18n="badge">Sin telemetría · Con privacidad</p>
-          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4"><span class="glitch-title text-white" data-text="privacidad">privacidad</span><span class="slash-me">/me</span></h1>
+          <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-4"><span class="glitch-block"><span class="text-white">privacidad</span><span class="slash-me">/me</span><span class="ghost ghost-a" aria-hidden="true"><span class="text-white">privacidad</span><span class="slash-me">/me</span></span><span class="ghost ghost-b" aria-hidden="true"><span class="text-white">privacidad</span><span class="slash-me">/me</span></span></span></h1>
           <p class="text-steel text-base sm:text-lg max-w-lg mx-auto" data-i18n="hero">Aquí se van juntando las piezas. De momento la mayoría está cerrado; se irán abriendo cuando estén listas.</p>
         </div>
         <div class="nodes-wrap rounded-2xl">
@@ -141,15 +141,15 @@
     </section>
   </main>
   <footer class="relative z-10 border-t border-white/5 py-5">
-    <div class="max-w-5xl mx-auto px-5 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-steel">
-      <span class="font-mono">privacidad/me</span>
-      <div class="flex flex-wrap items-center justify-center gap-4">
+    <div class="max-w-5xl mx-auto px-5 grid grid-cols-1 sm:grid-cols-3 items-center gap-3 text-xs text-steel">
+      <span class="font-mono text-center sm:text-left">privacidad/me</span>
+      <a href="privacy.html" target="_blank" rel="noopener" class="text-center hover:text-neon hover-sound" data-i18n="privacy">Política de privacidad</a>
+      <div class="flex flex-wrap items-center justify-center sm:justify-end gap-4">
         <a href="https://t.me/privacidad_me" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Telegram</a>
         <a href="https://x.com/StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">X</a>
         <a href="https://www.youtube.com/@StarkPrivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">YouTube</a>
         <a href="https://www.instagram.com/starkprivacy" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Instagram</a>
         <a href="https://boringprivacy.io" target="_blank" rel="noopener" class="hover:text-neon hover-sound">Discord</a>
-        <a href="privacy.html" target="_blank" rel="noopener" class="hover:text-neon hover-sound" data-i18n="privacy">Política de privacidad</a>
       </div>
     </div>
   </footer>
